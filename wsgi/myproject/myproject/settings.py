@@ -38,19 +38,8 @@ ALLOWED_HOSTS = [
     #'www.example.com', # Second DNS alias (set up in the app)
 ]
 
-ON_OPENSHIFT = False
-if os.environ.has_key('OPENSHIFT_REPO_DIR'):
-    ON_OPENSHIFT = True
-if os.environ.has_key('OPENSHIFT_APP_NAME'):
-    DB_NAME = os.environ['OPENSHIFT_APP_NAME']
-if os.environ.has_key('OPENSHIFT_POSTGRESQL_DB_USERNAME'):
-    DB_USER = os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME']
-if os.environ.has_key('OPENSHIFT_POSTGRESQL_DB_PASSWORD'):
-    DB_PASSWD = os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD']
-if os.environ.has_key('OPENSHIFT_POSTGRESQL_DB_HOST'):
-    DB_HOST = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
-if os.environ.has_key('OPENSHIFT_POSTGRESQL_DB_PORT'):
-    DB_PORT = os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']
+import urlparse
+db_url = urlparse.urlparse(os.environ.get('OPENSHIFT_POSTGRESQL_DB_URL'))
 
 
 # Application definition
@@ -101,12 +90,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': DB_NAME,               # Or path to database file if using sqlite3.
-        'USER': DB_USER,               # Not used with sqlite3.
-        'PASSWORD': DB_PASSWD,         # Not used with sqlite3.
-        'HOST': DB_HOST,               # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': DB_PORT,
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ['OPENSHIFT_APP_NAME'],
+        'USER': db_url.username,
+        'PASSWORD': db_url.password,
+        'HOST': db_url.hostname,
+        'PORT': db_url.port,
     }
 }
 
