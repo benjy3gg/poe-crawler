@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
+from urllib.parse import urlparse
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 DJ_PROJECT_DIR = os.path.dirname(__file__)
@@ -38,7 +40,6 @@ ALLOWED_HOSTS = [
     #'www.example.com', # Second DNS alias (set up in the app)
 ]
 
-import urlparse
 db_url = urlparse.urlparse(os.environ.get('OPENSHIFT_POSTGRESQL_DB_URL'))
 
 
