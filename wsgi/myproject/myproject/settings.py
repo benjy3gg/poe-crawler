@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
     #'www.example.com', # Second DNS alias (set up in the app)
 ]
 
-db_url = urlparse.urlparse(os.environ.get('OPENSHIFT_POSTGRESQL_DB_URL'))
+db_url = urlparse(os.environ.get('OPENSHIFT_POSTGRESQL_DB_URL'))
 
 
 # Application definition
