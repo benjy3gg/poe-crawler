@@ -1,8 +1,8 @@
 from django.views.generic.list import ListView
-from .models import Entry
+from .models import SkillTree
 
 
-class EntryListView(ListView):
+class SkillTreeListView(ListView):
 
-    model = Entry
-    template_name = "entry_list.html"
+    model = SkillTree
+    template_name = "skilltree_list.html"

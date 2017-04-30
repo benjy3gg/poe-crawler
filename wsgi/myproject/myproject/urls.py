@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from .views import EntryListView
+from .views import SkillTreeListView
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', EntryListView.as_view(), name="entry-list")
+    url(r'^$', SkillTreeListView.as_view(), name="skilltree-list")
 ]
