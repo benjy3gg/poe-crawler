@@ -8,6 +8,12 @@ class Character(models.Model):
     class Meta:
         verbose_name_plural = "Characters"
 
+    def __unicode__(self):
+        return "{} ({})".format(self.name, self.active)
+
+    def __str__(self):
+        return "{} ({})".format(self.name, self.active)
+
 
 class Account(models.Model):
     name = models.CharField(max_length=200)
@@ -15,6 +21,12 @@ class Account(models.Model):
 
     class Meta:
         verbose_name_plural = "Accounts"
+
+    def __unicode__(self):
+        return "{} ({})".format(self.name, len(self.characters.all()))
+
+    def __str__(self):
+        return "{} ({})".format(self.name, len(self.characters.all()))
 
 
 class SkillTree(models.Model):
@@ -28,6 +40,9 @@ class SkillTree(models.Model):
         verbose_name_plural = "SkillTrees"
 
     def __unicode__(self):
+        return "{} - {} ()".format(self.account.name, self.character.name, self.level)
+
+    def __str__(self):
         return "{} - {} ()".format(self.account.name, self.character.name, self.level)
 
 
