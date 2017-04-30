@@ -12,8 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         data = getSkillTreeDataForCharacter("nugiyen", "VXCVCXZZZVCVC")
-        entry = Entry.create(accountName="nugiyen", characterName="VXCVCXZZZVCVC", url=data["fullUrl"], level=data["level"])
-        entry.save()
+        entry = Entry.objects.create(accountName="nugiyen", characterName="VXCVCXZZZVCVC", url=data["fullUrl"], level=int(data["level"]))
         self.stdout.write('Successfully queried user "%s"' % data["fullUrl"])
 
 
@@ -69,4 +68,4 @@ def getSkillTreeDataForCharacter(accountName, characterName):
         accountName, characterName)
 
 
-    return  {"fullUrl": fullUrl, "level": character}
+    return  {"fullUrl": fullUrl, "level": character["level"]}
