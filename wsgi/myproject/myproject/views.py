@@ -5,4 +5,8 @@ from .models import Entry
 class EntryListView(ListView):
 
     model = Entry
-    template_name = "templates/entry_list.html"
+    template_name = "entry_list.html"
+
+    def get_queryset(self):
+        entries = Entry.object.all()
+        return entries
