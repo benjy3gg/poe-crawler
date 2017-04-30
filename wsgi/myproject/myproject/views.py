@@ -4,6 +4,9 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from .models import SkillTree
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class SkillTreeListView(ListView):
@@ -21,7 +24,11 @@ class SkillTreeDetailView(DetailView):
 @csrf_exempt
 @require_POST
 def skilltree_setimage(request, skilltree_id):
+    logger.error(skilltree_id)
     skilltree = get_object_or_404(SkillTree, id=skilltree_id)
-    skilltree.image_url = "https://poe-creeper.herokuapp.com/{}.png".format(request.POST.get("hash", ""))
+    logger.error(skilltree)
+    hash = request.POST.get("hash", "")
+    logger.error(hash)
+    skilltree.image_url = "https://poe-creeper.herokuapp.com/{}.png".format()
     skilltree.save()
 
