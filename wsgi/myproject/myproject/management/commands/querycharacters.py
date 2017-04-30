@@ -13,13 +13,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         accounts = Account.objects.all()
         for account in accounts:
-            for character in account.characters:
+            for character in account.characters.all():
                 if character.active:
                     try:
-                        data = getSkillTreeDataForCharacter("nugiyen", "VXCVCXZZZVCVC")
+                        data = getSkillTreeDataForCharacter(account.name, character.name)
                         skillTree = SkillTree.objects.create(account=account, character=character, url=data["fullUrl"], level=int(data["level"]))
+                        self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
                     except TypeError:
                         character.active = False
+                        self.stdout.write('Character is not available "%s"' % character.name)
 
 
 def getUrl(requestUrl):
