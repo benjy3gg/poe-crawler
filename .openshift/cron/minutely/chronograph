@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "this is cron"
+
+python $OPENSHIFT_REPO_DIR/wsgi/myproject/myproject/manage.py queryCharacters
