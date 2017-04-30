@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul>
+{% for entry in object_list %}
+    <li>{{ entry.accountName }} - {{ entry.characterName }}: <a href=" {{entry.url}} ">({{entry.level}})</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>
