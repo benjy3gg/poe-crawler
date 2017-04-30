@@ -18,7 +18,8 @@ class Command(BaseCommand):
                     try:
                         data = getSkillTreeDataForCharacter(account.name, character.name)
                         try:
-                            skillTree = SkillTree.objects.get_or_create(account=account, character=character, url=data["fullUrl"], level=int(data["level"]))
+                            image_url = requestImage(data["url"])
+                            skillTree = SkillTree.objects.get_or_create(account=account, character=character, url=data["fullUrl"], level=int(data["level"], image_url=image_url))
                         except:
                             self.stdout.write('Found same skillTree already "%s"' % skillTree.character.name)
                         self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
@@ -27,12 +28,17 @@ class Command(BaseCommand):
                         self.stdout.write('Character is not available "%s"' % character.name)
 
 
+def requestImage(skilltreeUrl):
+    hash = getUrl("codemongo-benjy3gg.rhcloud.com/?url={}".format(skilltreeUrl))
+    return "codemongo-benjy3gg.rhcloud.com/{}.png".format(hash)
+
 def getUrl(requestUrl):
     fp = urllib.request.urlopen(requestUrl)
     mybytes = fp.read()
     mystr = mybytes.decode("utf8")
     fp.close()
     print(mystr)
+    return mystr
 
 
 def getJsonFromUrl(requestUrl):
@@ -79,4 +85,4 @@ def getSkillTreeDataForCharacter(accountName, characterName):
         accountName, characterName)
 
 
-    return  {"fullUrl": fullUrl, "level": character["level"]}
+    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded}

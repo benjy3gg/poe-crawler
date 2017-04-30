@@ -35,6 +35,7 @@ class SkillTree(models.Model):
     url = models.CharField(max_length=20000)
     level = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
+    image_url = models.CharField(max_length=20000)
 
     class Meta:
         verbose_name_plural = "SkillTrees"
