@@ -2,4 +2,5 @@
 
 echo "this is cron"
 
-python $OPENSHIFT_REPO_DIR/wsgi/myproject/myproject/manage.py queryCharacters
+source ~/app-root/dependencies/python/virtenv/venv/bin/activate
+python ${OPENSHIFT_REPO_DIR}/wsgi/myproject/manage.py querycharacters
