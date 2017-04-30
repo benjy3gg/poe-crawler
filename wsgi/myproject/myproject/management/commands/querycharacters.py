@@ -18,9 +18,9 @@ class Command(BaseCommand):
                     try:
                         data = getSkillTreeDataForCharacter(account.name, character.name)
                         try:
-                            requestImage(data["url"])
-
-                            skillTree = SkillTree.objects.get_or_create(account=account, character=character, url=data["fullUrl"], level=int(data["level"]))
+                            skillTree = SkillTree.objects.get_or_create(account=account, character=character,
+                                                                        url=data["fullUrl"], level=int(data["level"]))
+                            requestImage(data["url"], skillTree.pk)
                         except:
                             self.stdout.write('Found same skillTree already "%s"' % skillTree.character.name)
                         self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
@@ -29,9 +29,9 @@ class Command(BaseCommand):
                         self.stdout.write('Character is not available "%s"' % character.name)
 
 
-def requestImage(skilltreeUrl):
-    hash = getUrl("codemongo-benjy3gg.rhcloud.com/?url={}".format(skilltreeUrl))
-    return "codemongo-benjy3gg.rhcloud.com/{}.png".format(hash)
+def requestImage(skilltreeUrl, skillTreeId):
+    hash = getUrl("https://poe-creeper.herokuapp.com/?url={}&skilltree_id{}".format(skilltreeUrl, skillTreeId))
+    return "https://poe-creeper.herokuapp.com/{}.png".format(hash)
 
 def getUrl(requestUrl):
     fp = urllib.request.urlopen(requestUrl)
