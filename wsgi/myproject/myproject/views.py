@@ -20,6 +20,6 @@ class SkillTreeDetailView(DetailView):
 @require_POST
 def skilltree_setimage(request, skilltree_id):
     skilltree = get_object_or_404(SkillTree, id=skilltree_id)
-    skilltree.image_url = request.POST.get("image_url", "")
+    skilltree.image_url = "https://poe-creeper.herokuapp.com/{}.png".format(request.POST.get("hash", ""))
     skilltree.save()
 

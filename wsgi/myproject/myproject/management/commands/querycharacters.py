@@ -18,7 +18,7 @@ class Command(BaseCommand):
                     try:
                         data = getSkillTreeDataForCharacter(account.name, character.name)
                         try:
-                            skillTree = SkillTree.objects.get_or_create(account=account, character=character,
+                            skillTree, created = SkillTree.objects.get_or_create(account=account, character=character,
                                                                         url=data["fullUrl"], level=int(data["level"]))
                             image_url = requestImage(data["url"], skillTree.pk)
                         except:
@@ -30,7 +30,7 @@ class Command(BaseCommand):
 
 
 def requestImage(skilltreeUrl, skillTreeId):
-    hash = getUrl("https://poe-creeper.herokuapp.com/?url={}&skilltree_id{}".format(skilltreeUrl, skillTreeId))
+    hash = getUrl("https://poe-creeper.herokuapp.com/?url=poedb.tw/us/passive-skill-tree/{}&skilltree_id={}".format(skilltreeUrl, skillTreeId))
     return "https://poe-creeper.herokuapp.com/{}.png".format(hash)
 
 def getUrl(requestUrl):
