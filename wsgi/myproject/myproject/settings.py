@@ -46,6 +46,7 @@ db_url = urlparse(os.environ.get('OPENSHIFT_POSTGRESQL_DB_URL'))
 # Application definition
 
 INSTALLED_APPS = (
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,3 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
+
+CRONJOBS = [
+    ('*/5 * * * *', 'myproject.cron.my_scheduled_job')
+]
