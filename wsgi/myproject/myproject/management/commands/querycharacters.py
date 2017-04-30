@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from django.core.management.base import BaseCommand
-#from myproject.models import Entry
+from myproject.models import Entry
 import urllib.request
 import struct
 import base64
@@ -11,8 +11,10 @@ class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
 
     def handle(self, *args, **options):
-        fullUrl = getSkillTreeDataForCharacter("benjy3gg", "EingefrorenerScheiss")
-        self.stdout.write(self.style.SUCCESS('Successfully queried user "%s"' % fullUrl))
+        data = getSkillTreeDataForCharacter("nugiyen", "VXCVCXZZZVCVC")
+        entry = Entry.create(accountName="nugiyen", characterName="VXCVCXZZZVCVC", url=data["fullUrl"], level=data["level"])
+        entry.save()
+        self.stdout.write('Successfully queried user "%s"' % data["fullUrl"])
 
 
 def getUrl(requestUrl):
@@ -66,9 +68,5 @@ def getSkillTreeDataForCharacter(accountName, characterName):
     fullUrl = "http://www.pathofexile.com/passive-skill-tree/" + encoded + "?accountName={}&characterName={}".format(
         accountName, characterName)
 
-    return fullUrl
 
-    # add the url to the database with the character info like skilltree and especially character level
-
-
-getSkillTreeDataForCharacter("benjy3gg", "EingefrorenerScheiss")
+    return  {"fullUrl": fullUrl, "level": character}
