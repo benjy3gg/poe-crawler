@@ -17,7 +17,10 @@ class Command(BaseCommand):
                 if character.active:
                     try:
                         data = getSkillTreeDataForCharacter(account.name, character.name)
-                        skillTree = SkillTree.objects.create(account=account, character=character, url=data["fullUrl"], level=int(data["level"]))
+                        try:
+                            skillTree = SkillTree.objects.get_or_create(account=account, character=character, url=data["fullUrl"], level=int(data["level"]))
+                        except:
+                            self.stdout.write('Found same skillTree already "%s"' % skillTree.character.name)
                         self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
                     except TypeError:
                         character.active = False

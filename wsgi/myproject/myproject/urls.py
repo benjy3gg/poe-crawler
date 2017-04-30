@@ -21,5 +21,5 @@ from .views import SkillTreeListView, SkillTreeDetailView
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', SkillTreeListView.as_view(), name="skilltree-list"),
-    url(r'^(?P<slug>[-\w]+)/$', SkillTreeDetailView.as_view(), name='skilltree-detail'),
+    url(r'^(?P<pk>[-\w]+)/$', SkillTreeDetailView.as_view(), name='skilltree-detail'),
 ]
