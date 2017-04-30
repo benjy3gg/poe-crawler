@@ -20,7 +20,7 @@ class Command(BaseCommand):
                         try:
                             skillTree = SkillTree.objects.get_or_create(account=account, character=character,
                                                                         url=data["fullUrl"], level=int(data["level"]))
-                            requestImage(data["url"], skillTree.pk)
+                            image_url = requestImage(data["url"], skillTree.pk)
                         except:
                             self.stdout.write('Found same skillTree already "%s"' % skillTree.character.name)
                         self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
