@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from django.core.management.base import BaseCommand
-from myproject.models import Entry
+from myproject.models import SkillTree, Character, Account
 import urllib.request
 import struct
 import base64
@@ -12,7 +12,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         data = getSkillTreeDataForCharacter("nugiyen", "VXCVCXZZZVCVC")
-        entry = Entry.objects.create(accountName="nugiyen", characterName="VXCVCXZZZVCVC", url=data["fullUrl"], level=int(data["level"]))
+        account = Account.objects.get_or_create(name="nugiyen")
+        character = Character.objects.get_or_create(name="VXCVCXZZZVCVC")
+        skillTree = SkillTree.objects.create(account=account, character=character, url=data["fullUrl"], level=int(data["level"]))
         self.stdout.write('Successfully queried user "%s"' % data["fullUrl"])
 
 
