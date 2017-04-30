@@ -3,6 +3,11 @@
 # is deployed and started.  This script gets executed directly, so 
 # it could be python, php, ruby, etc.
 # GETTING-STARTED: change 'myproject' to your project name:
+echo "Executing 'python $OPENSHIFT_REPO_DIR/wsgi/myproject/manage.py makemigrations --noinput'"
+# GETTING-STARTED: change 'myproject' to your project name:
+python "$OPENSHIFT_REPO_DIR"wsgi/myproject/manage.py makemigrations --noinput
+
+# GETTING-STARTED: change 'myproject' to your project name:
 echo "Executing 'python $OPENSHIFT_REPO_DIR/wsgi/myproject/manage.py migrate --noinput'"
 # GETTING-STARTED: change 'myproject' to your project name:
 python "$OPENSHIFT_REPO_DIR"wsgi/myproject/manage.py migrate --noinput
