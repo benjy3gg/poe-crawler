@@ -27,8 +27,9 @@ def skilltree_setimage(request, skilltree_id):
     logger.error(skilltree_id)
     skilltree = get_object_or_404(SkillTree, id=skilltree_id)
     logger.error(skilltree)
+    logger.error(request.POST)
     hash = request.POST.get("hash", "")
     logger.error(hash)
-    skilltree.image_url = "https://poe-creeper.herokuapp.com/{}.png".format()
+    skilltree.image_url = "https://poe-creeper.herokuapp.com/{}.png".format(hash)
     skilltree.save()
 
