@@ -11,11 +11,15 @@ class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
 
     def handle(self, *args, **options):
-        data = getSkillTreeDataForCharacter("nugiyen", "VXCVCXZZZVCVC")
-        account = Account.objects.get_or_create(name="nugiyen")
-        character = Character.objects.get_or_create(name="VXCVCXZZZVCVC")
-        skillTree = SkillTree.objects.create(account=account, character=character, url=data["fullUrl"], level=int(data["level"]))
-        self.stdout.write('Successfully queried user "%s"' % data["fullUrl"])
+        accounts = Account.objects.all()
+        for account in accounts:
+            for character in account.characters:
+                if character.active:
+                    try:
+                        data = getSkillTreeDataForCharacter("nugiyen", "VXCVCXZZZVCVC")
+                        skillTree = SkillTree.objects.create(account=account, character=character, url=data["fullUrl"], level=int(data["level"]))
+                    except TypeError:
+                        character.active = False
 
 
 def getUrl(requestUrl):

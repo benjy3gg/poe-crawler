@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<h1>List of SkillTrees</h1>
+
 <ul>
 {% for entry in object_list %}
     <li>{{ entry.created_at }}{{ entry.accountName }} - {{ entry.characterName }}: <a href=" {{ entry.url }} ">({{ entry.level }})</a></li>
