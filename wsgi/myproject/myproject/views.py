@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from .models import SkillTree
 import logging
-from django.http import JsonResponse
+from django.http import HttpResponse
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +29,6 @@ def skilltree_setimage(request, skilltree_id, img_hash):
     skilltree = get_object_or_404(SkillTree, id=skilltree_id)
     skilltree.image_url = "https://poe-creeper2.herokuapp.com/{}.png".format(img_hash)
     skilltree.save()
-    response_data = {True}
 
-    return JsonResponse(response_data, status=200, safe=False)
+    return HttpResponse('')
 
