@@ -58,7 +58,7 @@ def skilltree_setimage(request, skilltree_id, img_hash):
     skilltree = get_object_or_404(SkillTree, id=skilltree_id)
     skilltree.image_url = "https://poe-creeper2.herokuapp.com/{}.png".format(img_hash)
     skilltree.save()
-    #get_remote_image(skilltree)
+    get_remote_image(skilltree)
 
     return HttpResponse('')
 
