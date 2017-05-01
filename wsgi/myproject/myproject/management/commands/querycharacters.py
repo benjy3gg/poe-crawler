@@ -16,7 +16,9 @@ class Command(BaseCommand):
             characterDataUrl = "http://www.pathofexile.com/character-window/get-characters?accountName={}".format(account.name)
             characters = getCharacterData(characterDataUrl)
             for char in characters:
-                Character.objects.create(name=char, account=account, active=True)
+                c = Character.objects.create(name=char, active=True)
+                account.characters.add(c)
+                account.save()
             for character in account.characters.all():
                 if character.active:
                     try:
