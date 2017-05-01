@@ -15,6 +15,9 @@ class SkillTreeListView(ListView):
     model = SkillTree
     template_name = "skilltree_list.html"
 
+    def get_queryset(self):
+        SkillTree.objects.order_by("created_at").all()
+
 
 class SkillTreeDetailView(DetailView):
 
