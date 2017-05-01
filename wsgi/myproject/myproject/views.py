@@ -19,6 +19,7 @@ class SkillTreeListView(ListView):
         objects = SkillTree.objects.order_by("created_at").all()
         return objects
 
+
 class CharacterListView(ListView):
 
     model = Character
@@ -39,17 +40,12 @@ class CharacterDetailView(DetailView):
 
     model = Character
     template_name = "character_detail.html"
-    pk_url_kwarg = "character_name"
-
-    def get_object(self, queryset=None):
-        return Character.objects.filter(name=self.kwargs["character_name"])
 
     def get_context_data(self, **kwargs):
-        character_name = kwargs.pop("character_name")
         context = super(CharacterDetailView, self).get_context_data()
-        context["skilltrees"] = SkillTree.objects.filter(name=character_name)
+        character_pk = kwargs["pk"]
+        context["skilltrees"] = SkillTree.objects.filter(character__id=character_pk)
         return context
-
 
 @csrf_exempt
 @require_POST
