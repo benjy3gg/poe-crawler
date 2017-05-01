@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', SkillTreeListView.as_view(), name="skilltree-list"),
     url(r'^(?P<pk>[-\w]+)/$', SkillTreeDetailView.as_view(), name='skilltree-detail'),
-    url(r'^skilltree/(?P<skilltree_id>[0-9]+)/setimage/$', skilltree_setimage, name='skilltree-setimage'),
+    url(r'^skilltree/(?P<skilltree_id>[0-9]+)/setimage/(?P<skilltree_id>[0-9a-z]+)img_hash/$', skilltree_setimage, name='skilltree-setimage'),
 ]

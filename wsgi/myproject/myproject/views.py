@@ -24,16 +24,12 @@ class SkillTreeDetailView(DetailView):
 
 @csrf_exempt
 @require_POST
-def skilltree_setimage(request, skilltree_id):
+def skilltree_setimage(request, skilltree_id, img_hash):
     logger.error(skilltree_id)
     skilltree = get_object_or_404(SkillTree, id=skilltree_id)
-    logger.error(skilltree)
-    logger.error(request.POST)
-    hash = request.POST.get("hash", "")
-    logger.error(hash)
-    skilltree.image_url = "https://poe-creeper2.herokuapp.com/{}.png".format(hash)
+    skilltree.image_url = "https://poe-creeper2.herokuapp.com/{}.png".format(img_hash)
     skilltree.save()
     response_data = {True}
 
-    return JsonResponse(response_data, status=201)
+    return JsonResponse(response_data, status=200, safe=False)
 
