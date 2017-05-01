@@ -39,8 +39,9 @@ class CharacterDetailView(DetailView):
 
     model = Character
     template_name = "character_detail.html"
+    pk_url_kwarg = "character_name"
 
-    def get_queryset(self):
+    def get_object(self, queryset=None):
         return Character.objects.filter(name=self.kwargs["character_name"])
 
     def get_context_data(self, **kwargs):
