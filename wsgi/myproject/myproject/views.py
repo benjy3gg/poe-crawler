@@ -66,8 +66,11 @@ def get_remote_image(self):
     if self.image_url and not self.image_file:
         result = urlretrieve(self.image_url)
         logger.error(MEDIA_ROOT + self.image_url)
+        imagefile = File(open(result[0], 'rb'))
+        filename = MEDIA_ROOT + self.character.name + "_" + str(self.level) + ".png"
         self.image_file.save(
-                MEDIA_ROOT + self.image_url,
-                File(open(result[0]))
+                filename,
+                imagefile
                 )
+        self.image_url = filename
         self.save()
