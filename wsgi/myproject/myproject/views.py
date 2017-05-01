@@ -21,11 +21,11 @@ class SkillTreeListView(ListView):
 
 class CharacterListView(ListView):
 
-    model = SkillTree
-    template_name = "skilltree_list.html"
+    model = Character
+    template_name = "character_list.html"
 
     def get_queryset(self):
-        objects = SkillTree.objects.order_by("created_at").all()
+        objects = Character.objects.order_by("created_at").all()
         return objects
 
 
