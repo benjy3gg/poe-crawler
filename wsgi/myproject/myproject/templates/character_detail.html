@@ -20,24 +20,26 @@
 </ul>
 
 <script type="text/javascript">
-    var gif = new GIF({
-      workers: 2,
-      quality: 10,
-      workerScript: "{% static 'js/gif.worker.js' %}"
-    });
+    window.onload = function() {
+        var gif = new GIF({
+          workers: 2,
+          quality: 10,
+          workerScript: "{% static 'js/gif.worker.js' %}"
+        });
 
-    var elements = document.getElementsByClassName('imgs');
-    for (var i = 0; i < elements.length; ++i) {
-        var item = elements[i];
-        gif.addFrame(item);
+        var elements = document.getElementsByClassName('imgs');
+        for (var i = 0; i < elements.length; ++i) {
+            var item = elements[i];
+            gif.addFrame(item);
+        }
+
+        setTimeout(function() {gif.render();}, 1000);
+
+        gif.on('finished', function(blob) {
+            renderimg = document.getElementById("render");
+            renderimg.src = URL.createObjectURL(blob);
+        });
     }
-
-    gif.on('finished', function(blob) {
-        renderimg = document.getElementById("render");
-        renderimg.src = URL.createObjectURL(blob);
-    });
-
-    gif.render();
 </script>
 </body>
 </html>
