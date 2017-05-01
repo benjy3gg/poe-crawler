@@ -18,7 +18,7 @@ class Command(BaseCommand):
             for char in characters:
                 c = Character.objects.create(name=char, active=True)
                 account.characters.add(c)
-                account.save()"""  
+                account.save()"""
             for character in account.characters.all():
                 if character.active:
                     try:
@@ -26,7 +26,8 @@ class Command(BaseCommand):
                         try:
                             skillTree, created = SkillTree.objects.get_or_create(account=account, character=character,
                                                                         url=data["fullUrl"], level=int(data["level"]))
-                            image_url = requestImage(data["url"], skillTree.pk)
+                            if not created:
+                                image_url = requestImage(data["url"], skillTree.pk)
                         except:
                             self.stdout.write('Found same skillTree already "%s"' % skillTree.character.name)
                         self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
