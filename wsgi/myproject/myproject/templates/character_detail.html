@@ -11,6 +11,8 @@
 
 <h1>List of SkillTrees for {{object.name}}</h1>
 
+<img id="render" src="">
+
 <ul>
 {% for skilltree in skilltrees %}
     <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}: <img class="imgs" src="{{skilltree.image_url}}" style="display:none;"><a href=" {{ skilltree.url }}">({{ skilltree.level }})</a></li>
@@ -30,7 +32,8 @@
     }
 
     gif.on('finished', function(blob) {
-      window.open(URL.createObjectURL(blob));
+        renderimg = document.getElementById("render");
+        renderimg.src = URL.createObjectURL(blob);
     });
 
     gif.render();
