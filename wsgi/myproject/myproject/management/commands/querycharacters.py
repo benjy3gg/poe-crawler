@@ -49,9 +49,10 @@ def getCharacterData(characterDataUrl):
     characterJson = getJsonFromUrl(characterDataUrl)
     chars = []
     for char in characterJson:
-        if not Character.objects.filter(name=char["name"]).exists():
-            chars.append(char["name"])
-        return chars
+        if char["league"] in ["Hardcore Legacy", "Legacy"]:
+            if not Character.objects.filter(name=char["name"]).exists():
+                chars.append(char["name"])
+            return chars
 
 def getJsonFromUrl(requestUrl):
     fp = urllib.request.urlopen(requestUrl)
