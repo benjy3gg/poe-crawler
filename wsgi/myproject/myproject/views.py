@@ -6,6 +6,9 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import SkillTree, Character
 import logging
 from django.http import HttpResponse
+from urllib.request import urlretrieve
+import os
+from django.core.files import File
 
 logger = logging.getLogger(__name__)
 
@@ -54,6 +57,15 @@ def skilltree_setimage(request, skilltree_id, img_hash):
     skilltree = get_object_or_404(SkillTree, id=skilltree_id)
     skilltree.image_url = "https://poe-creeper2.herokuapp.com/{}.png".format(img_hash)
     skilltree.save()
+    get_remote_image(skilltree)
 
     return HttpResponse('')
 
+def get_remote_image(self):
+    if self.image_url and not self.image_file:
+        result = urlretrieve(self.image_url)
+        self.image_file.save(
+                os.path.basename(self.image_url),
+                File(open(result[0]))
+                )
+        self.save()
