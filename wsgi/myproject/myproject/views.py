@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from urllib.request import urlretrieve
 import os
 from django.core.files import File
-from .settings import MEDIA_ROOT
+from .settings import MEDIA_ROOT, MEDIA_URL
 
 logger = logging.getLogger(__name__)
 
@@ -66,7 +66,7 @@ def get_remote_image(self):
     if self.image_url and not self.image_file:
         result = urlretrieve(self.image_url)
         imagefile = File(open(result[0], 'rb'))
-        filename = MEDIA_ROOT + "/" + self.character.name + "_" + str(self.level) + ".png"
+        filename = MEDIA_ROOT + MEDIA_URL + self.character.name + "_" + str(self.level) + ".png"
         self.image_file.save(
                 filename,
                 imagefile

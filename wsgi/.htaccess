@@ -1,6 +1,2 @@
-<IfModule mod_rewrite.c>
-Options +FollowSymLinks
-
 RewriteEngine On
 RewriteRule ^application/media/(.+)$ /static/media/$1 [L]
-</IfModule>
