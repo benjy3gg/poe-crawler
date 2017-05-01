@@ -9,6 +9,7 @@ from django.http import HttpResponse
 from urllib.request import urlretrieve
 import os
 from django.core.files import File
+from .settings import MEDIA_ROOT
 
 logger = logging.getLogger(__name__)
 
@@ -64,8 +65,9 @@ def skilltree_setimage(request, skilltree_id, img_hash):
 def get_remote_image(self):
     if self.image_url and not self.image_file:
         result = urlretrieve(self.image_url)
+        logger.error(MEDIA_ROOT + self.image_url)
         self.image_file.save(
-                os.path.basename(self.image_url),
+                MEDIA_ROOT + self.image_url,
                 File(open(result[0]))
                 )
         self.save()
