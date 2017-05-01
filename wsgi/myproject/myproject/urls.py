@@ -23,6 +23,6 @@ urlpatterns = [
     url(r'^$', SkillTreeListView.as_view(), name="skilltree-list"),
     url(r'^character/(?P<character_name>[0-9a-zA-Z]+)/$', CharacterDetailView.as_view(), name="character-detail"),
     url(r'^characters/$', CharacterListView.as_view(), name="character-list"),
-    url(r'^(?P<pk>[-\w]+)/$', SkillTreeDetailView.as_view(), name='skilltree-detail'),
+    url(r'^skilltree/(?P<pk>[-\w]+)/$', SkillTreeDetailView.as_view(), name='skilltree-detail'),
     url(r'^skilltree/(?P<skilltree_id>[0-9]+)/setimage/(?P<img_hash>[0-9a-z]+)/$', skilltree_setimage, name='skilltree-setimage'),
 ]
