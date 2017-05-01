@@ -30,8 +30,8 @@ class Command(BaseCommand):
 
 
 def requestImage(skilltreeUrl, skillTreeId):
-    hash = getUrl("https://poe-creeper.herokuapp.com/?url=poedb.tw/us/passive-skill-tree/{}&skilltree_id={}".format(skilltreeUrl, skillTreeId))
-    return "https://poe-creeper.herokuapp.com/{}.png".format(hash)
+    hash = getUrl("https://poe-creeper2.herokuapp.com/?url=http://poedb.tw/us/passive-skill-tree/{}&skilltree_id={}".format(skilltreeUrl, skillTreeId))
+    return "https://poe-creeper2.herokuapp.com/{}.png".format(hash)
 
 def getUrl(requestUrl):
     fp = urllib.request.urlopen(requestUrl)
