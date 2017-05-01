@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>List of SkillTrees for {{object.name}}</h1>
+
+<ul>
+{% for skilltree in skilltrees %}
+    <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}: <a href=" {{ skilltree.url }}">({{ skilltree.level }})</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>

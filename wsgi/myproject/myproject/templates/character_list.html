@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<h1>List of SkillTrees for {{object.name}}</h1>
+<h1>List of Characters</h1>
 
 <ul>
-{% for skilltree in skilltrees %}
-    <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}: <a href=" {{ skilltree.url }}">({{ skilltree.level }})</a></li>
+{% for entry in object_list %}
+    <li><a href=" {% url 'character-detail' entry.pk %} ">{{ entry.name }} ({{ entry.level }}): </a></li>
 {% endfor %}
 </ul>
 </body>

@@ -19,23 +19,33 @@ class SkillTreeListView(ListView):
         objects = SkillTree.objects.order_by("created_at").all()
         return objects
 
+class CharacterListView(ListView):
+
+    model = SkillTree
+    template_name = "skilltree_list.html"
+
+    def get_queryset(self):
+        objects = SkillTree.objects.order_by("created_at").all()
+        return objects
+
 
 class SkillTreeDetailView(DetailView):
 
     model = SkillTree
     template_name = "skilltree_detail.html"
 
-class CharacterListView(ListView):
+
+class CharacterDetailView(DetailView):
 
     model = Character
-    template_name = "character_list.html"
+    template_name = "character_detail.html"
 
     def get_queryset(self):
         return Character.objects.filter(name=self.kwargs["character_name"])
 
     def get_context_data(self, **kwargs):
         character_name = kwargs.pop("character_name")
-        context = super(CharacterListView, self).get_context_data()
+        context = super(CharacterDetailView, self).get_context_data()
         context["skilltrees"] = SkillTree.objects.filter(name=character_name)
         return context
 
