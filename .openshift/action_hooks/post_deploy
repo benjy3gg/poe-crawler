@@ -16,3 +16,5 @@ python "$OPENSHIFT_REPO_DIR"wsgi/myproject/manage.py migrate --noinput
 echo "Executing 'python $OPENSHIFT_REPO_DIR/wsgi/myproject/manage.py collectstatic --noinput'"
 # GETTING-STARTED: change 'myproject' to your project name:
 python "$OPENSHIFT_REPO_DIR"wsgi/myproject/manage.py collectstatic --noinput
+
+ln -sf $OPENSHIFT_DATA_DIR/media $OPENSHIFT_REPO_DIR/wsgi/static/media

@@ -13,6 +13,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         accounts = Account.objects.all()
         for account in accounts:
+            characterDataUrl = "http://www.pathofexile.com/character-window/get-characters?accountName={}".format(account.name)
+            characters = getCharacterData(characterDataUrl)
+            for char in characters:
+                Character.objects.create(name=char, account=account, active=True)
             for character in account.characters.all():
                 if character.active:
                     try:
@@ -41,6 +45,13 @@ def getUrl(requestUrl):
     print(mystr)
     return mystr
 
+def getCharacterData(characterDataUrl):
+    characterJson = getJsonFromUrl(characterDataUrl)
+    chars = []
+    for char in characterJson:
+        if not Character.objects.filter(name=char["name"]).exists():
+            chars.append(char["name"])
+        return chars
 
 def getJsonFromUrl(requestUrl):
     fp = urllib.request.urlopen(requestUrl)
