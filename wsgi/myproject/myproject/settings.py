@@ -121,5 +121,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
 
-MEDIA_URL = '/static/media/'
-MEDIA_ROOT = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'media')
+MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
