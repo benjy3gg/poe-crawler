@@ -13,12 +13,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         accounts = Account.objects.all()
         for account in accounts:
-            characterDataUrl = "http://www.pathofexile.com/character-window/get-characters?accountName={}".format(account.name)
+            """characterDataUrl = "http://www.pathofexile.com/character-window/get-characters?accountName={}".format(account.name)
             characters = getCharacterData(characterDataUrl)
             for char in characters:
                 c = Character.objects.create(name=char, active=True)
                 account.characters.add(c)
-                account.save()
+                account.save()"""  
             for character in account.characters.all():
                 if character.active:
                     try:
