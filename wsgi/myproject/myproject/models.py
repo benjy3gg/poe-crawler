@@ -3,7 +3,7 @@ from django.db import models
 
 class Account(models.Model):
     name = models.CharField(max_length=200)
-    characters = models.ManyToManyField(to=Character)
+    characters = models.ManyToManyField('Character')
 
     class Meta:
         verbose_name_plural = "Accounts"
