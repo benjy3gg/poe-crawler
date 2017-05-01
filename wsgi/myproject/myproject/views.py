@@ -65,9 +65,8 @@ def skilltree_setimage(request, skilltree_id, img_hash):
 def get_remote_image(self):
     if self.image_url and not self.image_file:
         result = urlretrieve(self.image_url)
-        logger.error(MEDIA_ROOT + self.image_url)
         imagefile = File(open(result[0], 'rb'))
-        filename = MEDIA_ROOT + self.character.name + "_" + str(self.level) + ".png"
+        filename = MEDIA_ROOT + "/" + self.character.name + "_" + str(self.level) + ".png"
         self.image_file.save(
                 filename,
                 imagefile
