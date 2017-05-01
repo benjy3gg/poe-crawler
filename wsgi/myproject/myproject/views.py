@@ -26,7 +26,7 @@ class CharacterListView(ListView):
     template_name = "character_list.html"
 
     def get_queryset(self):
-        objects = Character.objects.order_by("created_at").all()
+        objects = Character.objects.order_by("name").all()
         return objects
 
 
@@ -43,7 +43,7 @@ class CharacterDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CharacterDetailView, self).get_context_data()
-        character_pk = kwargs["pk"]
+        character_pk = context["character"].id
         context["skilltrees"] = SkillTree.objects.filter(character__id=character_pk)
         return context
 

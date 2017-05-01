@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <script src="{% static 'js/gif.js' %}"></script>
+    <script src="{% static 'js/gif.worker.js' %}"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -10,8 +13,27 @@
 
 <ul>
 {% for skilltree in skilltrees %}
-    <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}: <a href=" {{ skilltree.url }}">({{ skilltree.level }})</a></li>
+    <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}: <img class="imgs" src="{{skilltree.image_url}}" style="display:none;"><a href=" {{ skilltree.url }}">({{ skilltree.level }})</a></li>
 {% endfor %}
 </ul>
+
+<script type="text/javascript">
+    var gif = new GIF({
+      workers: 2,
+      quality: 10
+    });
+
+    var elements = document.getElementsByClassName('imgs');
+    for (var i = 0; i < elements.length; ++i) {
+        var item = elements[i];
+        gif.addFrame(item);
+    }
+
+    gif.on('finished', function(blob) {
+      window.open(URL.createObjectURL(blob));
+    });
+
+    gif.render();
+</script>
 </body>
 </html>
