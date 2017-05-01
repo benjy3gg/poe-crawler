@@ -3,7 +3,7 @@ from django.views.generic.detail import DetailView
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from .models import SkillTree
+from .models import SkillTree, Character
 import logging
 from django.http import HttpResponse
 
@@ -16,13 +16,28 @@ class SkillTreeListView(ListView):
     template_name = "skilltree_list.html"
 
     def get_queryset(self):
-        SkillTree.objects.order_by("created_at").all()
+        objects = SkillTree.objects.order_by("created_at").all()
+        return objects
 
 
 class SkillTreeDetailView(DetailView):
 
     model = SkillTree
     template_name = "skilltree_detail.html"
+
+class CharacterListView(ListView):
+
+    model = Character
+    template_name = "character_list.html"
+
+    def get_queryset(self):
+        return Character.objects.filter(name=self.kwargs["character_name"])
+
+    def get_context_data(self, **kwargs):
+        character_name = kwargs.pop("character_name")
+        context = super(CharacterListView, self).get_context_data()
+        context["skilltrees"] = SkillTree.objects.filter(name=character_name)
+        return context
 
 
 @csrf_exempt

@@ -10,7 +10,7 @@
 
 <ul>
 {% for entry in object_list %}
-    <li>{{ entry.created_at }}{{ entry.account.name }} - {{ entry.character.name }}: <a href=" {{ entry.url }} ">({{ entry.level }})</a></li>
+    <li>{{ entry.created_at }}{{ entry.account.name }} - {{ entry.character.name }}: <a href=" {% url 'skilltree-detail' entry.pk %} ">({{ entry.level }})</a></li>
 {% endfor %}
 </ul>
 </body>
