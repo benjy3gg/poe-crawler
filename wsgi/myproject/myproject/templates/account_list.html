@@ -15,7 +15,7 @@
     <div class="row">
       <h1>List of Accounts</h1>
 
-        {% for account in objects %}
+        {% for account in object_list %}
         <div id="accordion" role="tablist" aria-multiselectable="true">
           {% for character in account.characters.all %}
             <div class="card">
