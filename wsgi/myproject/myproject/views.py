@@ -48,7 +48,7 @@ class CharacterDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(CharacterDetailView, self).get_context_data()
         character_pk = context["character"].id
-        context["skilltrees"] = SkillTree.objects.filter(character__id=character_pk)
+        context["skilltrees"] = SkillTree.objects.filter(character__id=character_pk).order_by('level')
         return context
 
 @csrf_exempt
