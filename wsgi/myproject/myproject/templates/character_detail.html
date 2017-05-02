@@ -19,7 +19,7 @@
 <ul class="list-group">
 {% for skilltree in skilltrees %}
     <li class="list-group-item">
-      {{ skilltree.created_at|date:"d m Y" }}{{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
+      {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
       {% if skilltree.image_file %}
         {% thumbnail skilltree.image_file "1000x1000" crop="center" as im %}
           <img class="imgs" src="{{ im.url }}" style="display:none;" width="{{ im.width }}" height="{{ im.height }}">

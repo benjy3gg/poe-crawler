@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from .views import SkillTreeListView, SkillTreeDetailView, skilltree_setimage, CharacterDetailView, CharacterListView
+from .views import SkillTreeListView, SkillTreeDetailView, skilltree_setimage, CharacterDetailView, CharacterListView, AccountListView
 from .settings import MEDIA_ROOT, MEDIA_URL
 from django.conf.urls.static import static
 
@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^$', SkillTreeListView.as_view(), name="skilltree-list"),
     url(r'^character/(?P<pk>[-\w]+)/$', CharacterDetailView.as_view(), name="character-detail"),
     url(r'^characters/$', CharacterListView.as_view(), name="character-list"),
+    url(r'^accounts/$', AccountListView.as_view(), name="account-list"),
     url(r'^skilltree/(?P<pk>[-\w]+)/$', SkillTreeDetailView.as_view(), name='skilltree-detail'),
     url(r'^skilltree/(?P<skilltree_id>[0-9]+)/setimage/(?P<img_hash>[0-9a-z]+)/$', skilltree_setimage, name='skilltree-setimage'),
 ]

@@ -3,7 +3,7 @@ from django.views.generic.detail import DetailView
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from .models import SkillTree, Character
+from .models import SkillTree, Character, Account
 import logging
 from django.http import HttpResponse
 from urllib.request import urlretrieve
@@ -21,6 +21,15 @@ class SkillTreeListView(ListView):
 
     def get_queryset(self):
         objects = SkillTree.objects.order_by("created_at").all()
+        return objects
+
+class AccountListView(ListView):
+
+    model = Account
+    template_name = "account_list.html"
+
+    def get_queryset(self):
+        objects = Account.objects.order_by("name").all()
         return objects
 
 
