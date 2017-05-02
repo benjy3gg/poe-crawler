@@ -15,7 +15,7 @@
 
 <ul>
 {% for skilltree in skilltrees %}
-    <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}: {% if skilltree.image_file.url %}<img class="imgs" src="{{skilltree.image_file.url}}" style="display:none;"><a href=" {{ skilltree.url }}">({{ skilltree.level }})</a>{% endif %}</li>
+    <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}: {% if skilltree.image_file %}<img class="imgs" src="{{skilltree.image_file.url}}" style="display:none;">{% endif %}<a href=" {{ skilltree.url }}">({{ skilltree.level }})</a></li>
 {% endfor %}
 </ul>
 
