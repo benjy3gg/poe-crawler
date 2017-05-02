@@ -18,7 +18,7 @@
 {% for skilltree in skilltrees %}
     <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}:
       {% if skilltree.image_file %}
-        {% thumbnail skilltree.image_file "500x500" crop="center" as im %}
+        {% thumbnail skilltree.image_file "1000x1000" crop="center" as im %}
           <img class="imgs" src="{{ im.url }}" style="display:none;" width="{{ im.width }}" height="{{ im.height }}">
         {% endthumbnail %}
       {% endif %}
@@ -33,8 +33,8 @@
           quality: 10,
           workerScript: "{% static 'js/gif.worker.js' %}",
             debug: true,
-            width: 2560,
-            height: 2560
+            width: 1000,
+            height: 1000
         });
 
         var elements = document.getElementsByClassName('imgs');
