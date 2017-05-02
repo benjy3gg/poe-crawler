@@ -1,3 +1,4 @@
+{% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,13 @@
 
 <ul>
 {% for skilltree in skilltrees %}
-    <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}: {% if skilltree.image_file %}<img class="imgs" src="{{skilltree.image_file.url_500x500}}" style="display:none;">{% endif %}<a href=" {{ skilltree.url }}">({{ skilltree.level }})</a></li>
+    <li>{{ skilltree.created_at }}{{ skilltree.account.name }} - {{ skilltree.character.name }}:
+      {% if skilltree.image_file %}
+        {% thumbnail skilltree.image_file "500x500" crop="center" as im %}
+          <img class="imgs" src="{{ im.url }}" style="display:none;" width="{{ im.width }}" height="{{ im.height }}">
+        {% endthumbnail %}
+      {% endif %}
+      <a href=" {{ skilltree.url }}">({{ skilltree.level }})</a></li>
 {% endfor %}
 </ul>
 

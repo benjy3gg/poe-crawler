@@ -19,7 +19,7 @@ setup(
     install_requires=[
         'Django==1.8.4',
         'Pillow==4.1.1',
-        'django-thumbs==0.4'
+        'sorl-thumbnail==12.3'
     ],
     dependency_links=[
         'https://pypi.python.org/simple/django/'
