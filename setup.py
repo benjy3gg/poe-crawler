@@ -18,7 +18,8 @@ setup(
     # GETTING-STARTED: define required django version:
     install_requires=[
         'Django==1.8.4',
-        'Pillow==4.1.1'
+        'Pillow==4.1.1',
+        'django-thumbs==0.4'
     ],
     dependency_links=[
         'https://pypi.python.org/simple/django/'
