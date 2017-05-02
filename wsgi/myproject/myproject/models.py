@@ -14,6 +14,10 @@ class Character(models.Model):
     def __str__(self):
         return "{} ({})".format(self.name, self.active)
 
+    def get_skilltrees(self):
+        skilltrees = SkillTree.objects.filter(character=self)
+        return skilltrees
+
 
 class Account(models.Model):
     name = models.CharField(max_length=200)
