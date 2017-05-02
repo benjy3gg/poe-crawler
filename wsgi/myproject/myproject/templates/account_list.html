@@ -16,18 +16,18 @@
       <h1>List of Accounts</h1>
 
         {% for account in object_list %}
-        <div id="accordion" role="tablist" aria-multiselectable="true">
+        <div id="accordion{{character.name}}" role="tablist" aria-multiselectable="true">
           {% for character in account.characters.all %}
             <div class="card">
               <div class="card-header" role="tab" id="heading{{character.name}}">
                 <h5 class="mb-0">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{character.name}}" aria-expanded="true" aria-controls="collapse{{character.name}}">
+                  <a data-toggle="collapse" data-parent="#accordion{{character.name}}" href="#collapse{{character.name}}" aria-expanded="true" aria-controls="collapse{{character.name}}">
                     {{account.name}}
                   </a>
                 </h5>
               </div>
 
-              <div id="collaps{{character.name}}" class="collapse show" role="tabpanel" aria-labelledby="heading{{character.name}}">
+              <div id="collapse{{character.name}}" class="collapse show" role="tabpanel" aria-labelledby="heading{{character.name}}">
                 <div class="card-block">
                   {{character.name}}
                   {% for skilltree in character.get_skilltrees %}
