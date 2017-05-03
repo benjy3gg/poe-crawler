@@ -19,7 +19,8 @@ setup(
     install_requires=[
         'Django==1.8.4',
         'Pillow==4.1.1',
-        'sorl-thumbnail==12.3'
+        'sorl-thumbnail==12.3',
+        'django-debug-toolbar==1.7',
     ],
     dependency_links=[
         'https://pypi.python.org/simple/django/'
