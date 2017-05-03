@@ -30,7 +30,7 @@ class Command(BaseCommand):
                                 image_url = requestImage(data["url"], skillTree.pk)
                                 self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
                         except:
-                            self.stdout.write('Found same skillTree already "%s"' % skillTree.character.name)
+                            self.stdout.write('Found same skillTree already')
                     except TypeError:
                         character.active = False
                         character.save()
@@ -78,7 +78,7 @@ def getSkillTreeDataForCharacter(accountName, characterName):
 
     for char in characterJson:
         if char["name"] == characterName:
-            print (json.dumps(char, indent=4, sort_keys=True))
+            #print (json.dumps(char, indent=4, sort_keys=True))
             character = char
     # print (json.dumps(characterJson, indent=4, sort_keys=True))
 
