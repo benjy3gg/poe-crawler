@@ -127,8 +127,9 @@ STATIC_ROOT = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'), 'wsgi', 'static
 MEDIA_URL = STATIC_URL + "media/"
 MEDIA_ROOT = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'media')
 
+
 def show_toolbar(request):
-    if not request.is_ajax() and request.user and request.user.name == "admin":
+    if not request.is_ajax() and request.user and request.user.username == "admin":
         return True
     else:
         return False
