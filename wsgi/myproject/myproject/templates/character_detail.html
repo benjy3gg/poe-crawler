@@ -18,9 +18,13 @@
 <ul class="list-group">
 {% for skilltree in skilltrees %}
     <li class="list-group-item">
-      {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
-        <img src="{{ skilltree.image_file.url }}">
-      <span class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
+        {% if not skilltree.broken %}
+            {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
+            {% if skilltree.image_file %}
+                <img src="{{ skilltree.image_file.url }}">
+            {% endif %}
+            <span class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
+        {% endif %}
     </li>
 {% endfor %}
 </ul>

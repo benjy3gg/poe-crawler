@@ -24,6 +24,11 @@ class Command(BaseCommand):
                     try:
                         data = getSkillTreeDataForCharacter(account.name, character.name)
                         try:
+                            previous = SkillTree.objects.get(account=account, character=character, url=data["fullUrl"], level=int(data["level"])-1)
+                            if previous:
+                                previous.broken = True
+                                previous.save()
+                                self.stdout.write('Deleted previous skillTree "%s"' % skillTree.character.name)
                             skillTree, created = SkillTree.objects.get_or_create(account=account, character=character,
                                                                         url=data["fullUrl"], level=int(data["level"]))
                             if created:

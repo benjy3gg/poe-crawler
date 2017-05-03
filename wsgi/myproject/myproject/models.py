@@ -41,6 +41,7 @@ class SkillTree(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     image_url = models.CharField(max_length=20000)
     image_file = models.ImageField(upload_to='images')
+    broken = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "SkillTrees"
