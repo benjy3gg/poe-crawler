@@ -51,14 +51,14 @@ def getUrl(requestUrl):
     mybytes = fp.read()
     mystr = mybytes.decode("utf8")
     fp.close()
-    print(mystr)
+    #print(mystr)
     return mystr
 
 def getCharacterData(characterDataUrl):
     characterJson = getJsonFromUrl(characterDataUrl)
     chars = []
     for char in characterJson:
-        if char["league"] in ["Hardcore Legacy", "Legacy"]:
+        if char["league"] in ["Hardcore Legacy", "Legacy", "SSF HC Legacy"]:
             if not Character.objects.filter(name=char["name"]).exists():
                 chars.append(char["name"])
     return chars
