@@ -34,7 +34,8 @@ class Command(BaseCommand):
                             if created:
                                 image_url = requestImage(data["url"], skillTree.pk)
                                 self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
-                        except:
+                        except Exception as e:
+                            self.stdout.write(e.message)
                             self.stdout.write('Found same skillTree already')
                     except TypeError:
                         character.active = False
