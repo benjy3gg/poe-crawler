@@ -28,11 +28,12 @@ class Command(BaseCommand):
                                                                         url=data["fullUrl"], level=int(data["level"]))
                             if created:
                                 image_url = requestImage(data["url"], skillTree.pk)
+                                self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
                         except:
                             self.stdout.write('Found same skillTree already "%s"' % skillTree.character.name)
-                        self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
                     except TypeError:
                         character.active = False
+                        character.save()
                         self.stdout.write('Character is not available "%s"' % character.name)
 
 
