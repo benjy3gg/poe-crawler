@@ -4,6 +4,7 @@ from sorl.thumbnail import ImageField
 class Character(models.Model):
     name = models.CharField(max_length=200)
     active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = "Characters"
@@ -22,6 +23,7 @@ class Character(models.Model):
 class Account(models.Model):
     name = models.CharField(max_length=200)
     characters = models.ManyToManyField(to=Character, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = "Accounts"

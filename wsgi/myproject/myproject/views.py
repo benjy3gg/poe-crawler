@@ -39,7 +39,7 @@ class CharacterListView(ListView):
     template_name = "character_list.html"
 
     def get_queryset(self):
-        objects = Character.objects.order_by("name").all()
+        objects = Character.objects.order_by("created_at").all()
         return objects
 
 

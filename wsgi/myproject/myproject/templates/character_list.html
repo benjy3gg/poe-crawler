@@ -10,7 +10,9 @@
 
 <ul>
 {% for entry in object_list %}
-    <li><a href=" {% url 'character-detail' entry.pk %} ">{{ entry.name }} ({{ entry.level }}): </a></li>
+    {% if entry.active %}
+        <li><a href=" {% url 'character-detail' entry.pk %} ">{{ entry.name }} ({{ entry.level }}): </a></li>
+    {% endif %}
 {% endfor %}
 </ul>
 </body>
