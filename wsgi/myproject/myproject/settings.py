@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 from urllib.parse import urlparse
+import cloudinary
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -137,3 +138,9 @@ def show_toolbar(request):
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': 'myproject.settings.show_toolbar',
 }
+
+cloudinary.config(
+  cloud_name = "dn7ibjfqf",
+  api_key = "814167462877235",
+  api_secret = "tPjsQQzACzuY_ObrQJgAEo1SRSY"
+)

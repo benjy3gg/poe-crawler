@@ -20,9 +20,10 @@
     <li class="list-group-item">
         {% if not skilltree.broken %}
             {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
-            {% if skilltree.image_file %}
+            <!-- {% if skilltree.image_file %}
                 <img src="{{ skilltree.image_file.url }}">
-            {% endif %}
+            {% endif %} -->
+                <img src="{{ skilltree.image_url }}">
             <span class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
         {% endif %}
     </li>

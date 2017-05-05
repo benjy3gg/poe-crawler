@@ -10,6 +10,9 @@ from urllib.request import urlretrieve
 import os
 from django.core.files import File
 from .settings import MEDIA_ROOT, MEDIA_URL
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 logger = logging.getLogger(__name__)
 
@@ -66,8 +69,10 @@ def skilltree_setimage(request, skilltree_id, img_hash):
     logger.error(skilltree_id)
     skilltree = get_object_or_404(SkillTree, id=skilltree_id)
     skilltree.image_url = "https://poe-creeper2.herokuapp.com/{}.png".format(img_hash)
+    result = cloudinary.uploader.upload(skilltree.image_url)
+    skilltree.image_url = result["url"]
     skilltree.save()
-    get_remote_image(skilltree)
+    #get_remote_image(skilltree)
 
     return HttpResponse('')
 
