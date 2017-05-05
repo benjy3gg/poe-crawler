@@ -21,7 +21,8 @@ setup(
         'Pillow==4.1.1',
         'sorl-thumbnail==12.3',
         'django-debug-toolbar==1.7',
-        'cloudinary==1.8.0'
+        'cloudinary==1.8.0',
+        'six==1.10.0'
     ],
     dependency_links=[
         'https://pypi.python.org/simple/django/'
