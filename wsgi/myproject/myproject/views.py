@@ -3,16 +3,18 @@ from django.views.generic.detail import DetailView
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from .models import SkillTree, Character, Account
-import logging
+from django.db.models import Avg, Max, Min
+from django.core.files import File
 from django.http import HttpResponse
 from urllib.request import urlretrieve
 import os
-from django.core.files import File
-from .settings import MEDIA_ROOT, MEDIA_URL
+import logging
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+
+from .models import SkillTree, Character, Account
+from .settings import MEDIA_ROOT, MEDIA_URL
 
 logger = logging.getLogger(__name__)
 
