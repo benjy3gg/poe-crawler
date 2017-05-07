@@ -60,7 +60,20 @@ class CharacterDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(CharacterDetailView, self).get_context_data()
         character_pk = context["character"].id
-        context["skilltrees"] = SkillTree.objects.filter(character__id=character_pk).order_by('level')
+        aggregate = SkillTree.objects.all().aggregate(Max('level'), Min('level'))
+        context["min_level"] = aggregate["level__min"]
+        context["max_level"] = aggregate["level__max"]
+        skillTrees = SkillTree.objects.filter(character__id=character_pk).order_by('level')
+        skillTrees_ = []
+        lastLevel = -1
+        for skillTree in skillTrees:
+            if skillTree.level == lastLevel:
+                skillTrees_.pop()
+                skillTrees_.append(skillTree)
+            else:
+                skillTrees_.append(skillTree)
+            lastLevel = skillTree.level
+        context["skilltrees"] = skillTrees_
         return context
 
 @csrf_exempt
