@@ -63,6 +63,7 @@ class CharacterDetailView(DetailView):
         context = super(CharacterDetailView, self).get_context_data()
         character_pk = context["character"].id
         aggregate = SkillTree.objects.all().aggregate(Max('level'), Min('level'))
+        print(aggregate)
         context["min_level"] = aggregate["level__min"]
         context["max_level"] = aggregate["level__max"]
         skillTrees = SkillTree.objects.filter(character__id=character_pk).order_by('level')
