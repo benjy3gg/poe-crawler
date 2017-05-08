@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
     <link href="{% static 'css/rangeslider.css' %}" rel="stylesheet">
+    <link href="{% static 'css/unslider.css' %}" rel="stylesheet">
+    <link href="{% static 'css/unslider-dots.css' %}" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -45,6 +47,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="{% static 'js/rangeslider.min.js' %}"></script>
+<script src="{% static 'js/unslider-min.js' %}"></script>
 <script type="text/javascript">
   window.onload = function() {
     $('.my-slider').unslider({
@@ -55,7 +58,7 @@
 
     $('input[type="range"]').rangeslider({
       onSlideEnd: function(position, value) {
-        $('.my-sliderr').unslider('animate:' + value);
+        $('.my-sliderr').unslider('animate:' + position);
       }
     });
 
