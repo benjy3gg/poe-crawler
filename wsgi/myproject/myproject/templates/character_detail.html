@@ -26,10 +26,10 @@
       value="{{min_level}}"
       data-orientation="horizontal">
       <span id="level-badge" class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
-      <div class="my-slider">
-        <ul>
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
           {% for skilltree in skilltrees %}
-          <li>
+          <div class="carousel-item">
             {% if not skilltree.broken %}
             {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
             <!-- {% if skilltree.image_file %}
@@ -37,9 +37,9 @@
             {% endif %} -->
             <img src="{{ skilltree.image_url }}">
             {% endif %}
-          </li>
+          </div>
           {% endfor %}
-        </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -51,13 +51,11 @@
   <script src="{% static 'js/unslider-min.js' %}"></script>
   <script type="text/javascript">
   $(function() {
-    slider = $('.my-slider').unslider({
-      animation: 'fade'
-    });
+    carousel = $('.carousel').carousel()
 
     $('input[type="range"]').rangeslider({
       onSlide: function(position, value) {
-        slider.unslider('animate:' + position);
+        carousel.carousel(position);
         $('#level-badge').text(value);
       }
     });
