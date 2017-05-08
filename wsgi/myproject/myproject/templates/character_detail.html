@@ -29,18 +29,17 @@
       <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
           {% for skilltree in skilltrees %}
-          <div class="carousel-item">
+          {% if forloop.first %}
+            <div class="carousel-item active">
+          {% else %}
+            <div class="carousel-item">
+            {% endif %}
             {% if not skilltree.broken %}
               {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
               <!-- {% if skilltree.image_file %}
               <img src="{{ skilltree.image_file.url }}">
               {% endif %} -->
-              {% if forloop.first %}
-                  <img class="d-block img-fluid active" src="{{ skilltree.image_url }}">
-              {% else %}
-                  <img class="d-block img-fluid" src="{{ skilltree.image_url }}">
-              {% endif %}
-
+              <img class="d-block img-fluid" src="{{ skilltree.image_url }}">
             {% endif %}
           </div>
           {% endfor %}
