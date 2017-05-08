@@ -23,20 +23,22 @@
   step="1"
   value="{{min_level}}"
   data-orientation="horizontal">
-<ul class="list-group">
-{% for skilltree in skilltrees %}
-    <li class="list-group-item">
-        {% if not skilltree.broken %}
-            {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
-            <!-- {% if skilltree.image_file %}
-                <img src="{{ skilltree.image_file.url }}">
-            {% endif %} -->
+<span class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
+<div class="my-slider">
+  <ul>
+  {% for skilltree in skilltrees %}
+      <li>
+          {% if not skilltree.broken %}
+              {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
+              <!-- {% if skilltree.image_file %}
+                  <img src="{{ skilltree.image_file.url }}">
+              {% endif %} -->
                 <img src="{{ skilltree.image_url }}">
-            <span class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
-        {% endif %}
-    </li>
-{% endfor %}
-</ul>
+          {% endif %}
+      </li>
+  {% endfor %}
+  </ul>
+</div>
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -45,7 +47,18 @@
 <script src="{% static 'js/rangeslider.min.js' %}"></script>
 <script type="text/javascript">
   window.onload = function() {
-    $('input[type="range"]').rangeslider();
+    $('.my-slider').unslider({
+      keys: false,
+      arrows: false,
+      nav: false
+    });
+
+    $('input[type="range"]').rangeslider({
+      onSlideEnd: function(position, value) {
+        $('.my-sliderr').unslider('animate:' + value);
+      }
+    });
+
   };
 </script>
 <!--<script src="{% static 'js/gif.js' %}"></script>
