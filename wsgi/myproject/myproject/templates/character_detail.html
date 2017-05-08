@@ -17,7 +17,7 @@
     <div class="row">
       <h1>List of SkillTrees for {{object.name}}</h1>
 
-<img id="render" src="" style="width: 75%;height: auto;">
+<!--<img id="render" src="" style="width: 75%;height: auto;">-->
 <input
   type="range"
   min="{{min_level}}"
@@ -25,7 +25,7 @@
   step="1"
   value="{{min_level}}"
   data-orientation="horizontal">
-<span class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
+<span id="level-badge" class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
 <div class="my-slider">
   <ul>
   {% for skilltree in skilltrees %}
@@ -59,6 +59,7 @@
     $('input[type="range"]').rangeslider({
       onSlideEnd: function(position, value) {
         $('.my-sliderr').unslider('animate:' + position);
+        $('#level-badge').text(value);
       }
     });
 
