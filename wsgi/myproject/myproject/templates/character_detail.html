@@ -51,11 +51,13 @@
   <script src="{% static 'js/unslider-min.js' %}"></script>
   <script type="text/javascript">
   $(function() {
-    $('.my-slider').unslider();
+    slider = $('.my-slider').unslider({
+      animation: 'fade'
+    });
 
     $('input[type="range"]').rangeslider({
-      onSlideEnd: function(position, value) {
-        $('.my-slider').unslider('animate:' + position);
+      onSlide: function(position, value) {
+        slider.unslider('animate:' + position);
         $('#level-badge').text(value);
       }
     });

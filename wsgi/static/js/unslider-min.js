@@ -624,7 +624,7 @@
 	};
 
 	$.fn._move = function() {
-		this.stop(true, true);
+		self.stop(true, true);
 		return $.fn[$.fn.velocity ? 'velocity' : 'animate'].apply(this, arguments);
 	};
 
