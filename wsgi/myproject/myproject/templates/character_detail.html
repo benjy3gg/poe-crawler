@@ -35,7 +35,12 @@
             <!-- {% if skilltree.image_file %}
             <img src="{{ skilltree.image_file.url }}">
             {% endif %} -->
-            <img class="d-block img-fluid" src="{{ skilltree.image_url }}">
+            {% if forloop.first %}
+                <div class='side_header' id='dark_gamelink_side'>
+                    <a class='actionheader' href=""></a>
+                </div>
+            {% endif %}
+            <img class="d-block img-fluid {% if forloop.first %}active{% endif %}" src="{{ skilltree.image_url }}">
             {% endif %}
           </div>
           {% endfor %}
