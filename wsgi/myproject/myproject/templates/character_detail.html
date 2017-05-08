@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
-    <link href="{% static 'css/rangeslider.css' %}" rel="stylesheet">
-    <link href="{% static 'css/unslider.css' %}" rel="stylesheet">
-    <link href="{% static 'css/unslider-dots.css' %}" rel="stylesheet">
-    <meta charset="UTF-8">
-    <title>Title</title>
+  {% load static %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+  <link href="{% static 'css/rangeslider.css' %}" rel="stylesheet">
+  <link href="{% static 'css/unslider.css' %}" rel="stylesheet">
+  <link href="{% static 'css/unslider-dots.css' %}" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
   <div class="container marketing">
@@ -17,38 +17,39 @@
     <div class="row">
       <h1>List of SkillTrees for {{object.name}}</h1>
 
-<!--<img id="render" src="" style="width: 75%;height: auto;">-->
-<input
-  type="range"
-  min="{{min_level}}"
-  max="{{max_level}}"
-  step="1"
-  value="{{min_level}}"
-  data-orientation="horizontal">
-<span id="level-badge" class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
-<div class="my-slider">
-  <ul>
-  {% for skilltree in skilltrees %}
-      <li>
-          {% if not skilltree.broken %}
-              {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
-              <!-- {% if skilltree.image_file %}
-                  <img src="{{ skilltree.image_file.url }}">
-              {% endif %} -->
-                <img src="{{ skilltree.image_url }}">
-          {% endif %}
-      </li>
-  {% endfor %}
-  </ul>
-</div>
-</div>
-</div>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="{% static 'js/rangeslider.min.js' %}"></script>
-<script src="{% static 'js/unslider-min.js' %}"></script>
-<script type="text/javascript">
+      <!--<img id="render" src="" style="width: 75%;height: auto;">-->
+      <input
+      type="range"
+      min="{{min_level}}"
+      max="{{max_level}}"
+      step="1"
+      value="{{min_level}}"
+      data-orientation="horizontal">
+      <span id="level-badge" class="badge badge-default badge-pill pull-right">({{ skilltree.level }})</span>
+      <div class="my-slider">
+        <ul>
+          {% for skilltree in skilltrees %}
+          <li>
+            {% if not skilltree.broken %}
+            {{ skilltree.created_at|date:"d.m.Y" }} {{ skilltree.created_at|date:"H:i" }} {{ skilltree.account.name }} - {{ skilltree.character.name }}:
+            <!-- {% if skilltree.image_file %}
+            <img src="{{ skilltree.image_file.url }}">
+            {% endif %} -->
+            <img src="{{ skilltree.image_url }}">
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  <script src="{% static 'js/rangeslider.min.js' %}"></script>
+  <script src="{% static 'js/unslider-min.js' %}"></script>
+  <script type="text/javascript">
   window.onload = function() {
     $('.my-slider').unslider({
       keys: false,
@@ -64,33 +65,33 @@
     });
 
   };
-</script>
-<!--<script src="{% static 'js/gif.js' %}"></script>
-<script type="text/javascript">
-    window.onload = function() {
-        var gif = new GIF({
-          workers: 2,
-          quality: 10,
-          workerScript: "{% static 'js/gif.worker.js' %}",
-            debug: true,
-            width: 1000,
-            height: 1000
-        });
+  </script>
+  <!--<script src="{% static 'js/gif.js' %}"></script>
+  <script type="text/javascript">
+  window.onload = function() {
+  var gif = new GIF({
+  workers: 2,
+  quality: 10,
+  workerScript: "{% static 'js/gif.worker.js' %}",
+  debug: true,
+  width: 1000,
+  height: 1000
+});
 
-        var elements = document.getElementsByClassName('imgs');
-        for (var i = 0; i < elements.length; ++i) {
-            var item = elements[i];
-            //item.crossOrigin = "Anonymous";
-            gif.addFrame(item);
-        }
+var elements = document.getElementsByClassName('imgs');
+for (var i = 0; i < elements.length; ++i) {
+var item = elements[i];
+//item.crossOrigin = "Anonymous";
+gif.addFrame(item);
+}
 
-        setTimeout(function() {gif.render();}, 1000);
+setTimeout(function() {gif.render();}, 1000);
 
-        gif.on('finished', function(blob) {
-            renderimg = document.getElementById("render");
-            renderimg.src = URL.createObjectURL(blob);
-        });
-    }
+gif.on('finished', function(blob) {
+renderimg = document.getElementById("render");
+renderimg.src = URL.createObjectURL(blob);
+});
+}
 </script> -->
 </body>
 </html>
