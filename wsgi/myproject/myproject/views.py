@@ -9,9 +9,13 @@ from django.http import HttpResponse
 from urllib.request import urlretrieve
 import os
 import logging
+
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+import pyimgur
+CLIENT_ID = "0f278547208555a"
+
 
 from .models import SkillTree, Character, Account
 from .settings import MEDIA_ROOT, MEDIA_URL
@@ -85,8 +89,15 @@ def skilltree_setimage(request, skilltree_id, img_hash):
     logger.error(skilltree_id)
     skilltree = get_object_or_404(SkillTree, id=skilltree_id)
     skilltree.image_url = "https://poe-creeper2.herokuapp.com/{}.png".format(img_hash)
-    result = cloudinary.uploader.upload(skilltree.image_url)
-    skilltree.image_url = result["url"]
+
+    im = pyimgur.Imgur(CLIENT_ID)
+    uploaded_image = im.upload_image(skilltree.image_url, title="Uploaded with PyImgur")
+    print(uploaded_image.title)
+    print(uploaded_image.link)
+    print(uploaded_image.size)
+    print(uploaded_image.type)
+    # result = cloudinary.uploader.upload(skilltree.image_url)
+    skilltree.image_url = uploaded_image.link
     skilltree.save()
     #get_remote_image(skilltree)
 
