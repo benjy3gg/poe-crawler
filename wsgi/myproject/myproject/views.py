@@ -91,7 +91,7 @@ def skilltree_setimage(request, skilltree_id, img_hash):
     skilltree.image_url = "https://poe-creeper2.herokuapp.com/{}.png".format(img_hash)
 
     im = pyimgur.Imgur(CLIENT_ID)
-    uploaded_image = im.upload_image(skilltree.image_url, title="Uploaded with PyImgur")
+    uploaded_image = im.upload_image(url=skilltree.image_url, title="Uploaded with PyImgur")
     print(uploaded_image.title)
     print(uploaded_image.link)
     print(uploaded_image.size)
