@@ -7,8 +7,8 @@ class Character(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     classId = models.IntegerField()
     ascendancyClass = models.IntegerField()
-    classs = models.CharacterField(default="", max_length=100)
-    league = models.CharacterField(default="", max_length=100)
+    classs = models.CharField(default="", max_length=100)
+    league = models.CharField(default="", max_length=100)
 
     class Meta:
         verbose_name_plural = "Characters"
