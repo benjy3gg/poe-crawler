@@ -133,7 +133,7 @@
     //<!--
     require(["main"], function() {
     require(["PoE/Backbone/Model/Character/Character", "PoE/Inventory/InventoryManager"], function(C, I) {
-        var c = new C({"name":{{character.name}},"league":{{character.league}},"classId":{{character.classId}},"ascendancyClass":{{character.ascendancyClass}},"class":{{character.classs}},"level":{{skilltrees.0.level}} });
+        var c = new C({"name":"{{character.name}}","league":"{{character.league}}","classId":"{{character.classId}}","ascendancyClass":"{{character.ascendancyClass}}","class":"{{character.classs}}","level":"{{skilltrees.0.level}}" });
         var options = {"el":"#profile-inventory-controls","accountName":{{character.account.name}},"equippedOnly":true};
         options.activeCharacter = c;
         var i = new I(options);
