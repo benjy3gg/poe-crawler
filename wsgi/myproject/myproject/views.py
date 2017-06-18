@@ -84,7 +84,7 @@ class CharacterDetailView(DetailView):
         context["skilltrees"] = skillTrees_
         context["skilltree"] = skillTrees_[context["min_level"]]
         context["character"] = Character.objects.get(pk=character_pk)
-        context["account"] = Account.objects.get(character__id=character_pk)
+        context["account"] = Account.objects.get(characters__id=character_pk)
         return context
 
 @csrf_exempt
