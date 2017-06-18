@@ -120,11 +120,11 @@ def character_get_passive_skills(request):
     character = request.GET.get('character', '')
     level = request.GET.get('level', 0)
     skilltree = get_object_or_404(SkillTree, account__name=account, character__name=character, level=int(level))
-    return JsonResponse(skilltree.characterJSON)
+    return JsonResponse(json.loads(skilltree.characterJSON))
 
 def character_get_items(request):
     account = request.GET.get('account', '')
     character = request.GET.get('character', '')
     level = request.GET.get('level', 0)
     skilltree = get_object_or_404(SkillTree, account__name=account, character__name=character, level=int(level))
-    return JsonResponse(skilltree.itemsJSON)
+    return JsonResponse(json.loads(skilltree.itemsJSON))
