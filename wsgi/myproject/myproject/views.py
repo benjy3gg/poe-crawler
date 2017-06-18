@@ -7,6 +7,7 @@ from django.db.models import Avg, Max, Min
 from django.core.files import File
 from django.http import HttpResponse
 from urllib.request import urlretrieve
+from django.http import JsonResponse
 import os
 import logging
 
@@ -119,11 +120,11 @@ def character_get_passive_skills(request):
     character = request.GET.get('character', '')
     level = request.GET.get('level', 0)
     skilltree = get_object_or_404(SkillTree, account__name=account, character__name=character, level=int(level))
-    return skilltree.characterJSON
+    return JsonResponse(skilltree.characterJSON)
 
 def character_get_items(request):
     account = request.GET.get('account', '')
     character = request.GET.get('character', '')
     level = request.GET.get('level', 0)
     skilltree = get_object_or_404(SkillTree, account__name=account, character__name=character, level=int(level))
-    return skilltree.itemsJSON
+    return JsonResponse(skilltree.itemsJSON)
