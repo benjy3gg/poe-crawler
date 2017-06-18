@@ -33,7 +33,7 @@ class Command(BaseCommand):
                                     previous.save()
                                     self.stdout.write('Deleted previous skillTree "%s"' % skillTree.character.name)"""
                                 skillTree, created = SkillTree.objects.get_or_create(account=account, character=character,
-                                                                            url=data["fullUrl"], level=int(data["level"]))
+                                                                            url=data["fullUrl"], level=int(data["level"]), characterJSON=data["characterJSON"], itemsJSON=data["itemsJSON"])
                                 """if created:
                                     image_url = requestImage(data["url"], skillTree.pk)
                                     self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)"""
@@ -115,4 +115,4 @@ def getSkillTreeDataForCharacter(accountName, characterName):
         accountName, characterName)
 
 
-    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded, "characterJSON": json.dumps(characterPassivesJson), "itemsJSON": json.dumps(itemsJson)}
+    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded, "characterJSON": json.dumps(characterPassivesJson, sort_keys=True), "itemsJSON": json.dumps(itemsJson, sort_keys=True)}
