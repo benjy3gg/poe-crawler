@@ -3625,7 +3625,7 @@ define("PoE/API/Character", ["jquery", "PoE/Backbone/Collection/Item/ItemCollect
               , i = {
                 character: n.characterName,
                 account: n.accountName,
-                level: n.activeCharacter.attributes.level
+                level: n.characterLevel
             };
             return n.accountName && (i.accountName = n.accountName),
             e.ajax({
@@ -3736,7 +3736,8 @@ define("PoE/Inventory/MainInventoryPanel", ["plugins", "Backbone", "PoE/API/Char
         showCharacterItems: function() {
             var e = this
               , t = {
-                characterName: this.activeCharacter.get("name")
+                characterName: this.activeCharacter.get("name"),
+                characterLevel: this.activeCharacter.get("level")
             };
             this.accountName && (t.accountName = this.accountName),
             n.getItems(t).done(function(t) {
