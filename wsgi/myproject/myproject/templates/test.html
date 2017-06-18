@@ -74,7 +74,7 @@
         <div class="container-bottom"></div>
         <div class="container-inner">
             <div class="container-content">
-                                <h2>Mathil - Characters</h2>
+                                <h2>{{character.account.name}}</h2>
 
         <div id="profile-inventory-controls" class="inventoryManager">
         </div>                            </div>
@@ -111,7 +111,7 @@
     <div id="fb-root"></div>
         <script type="text/javascript" src="http://web.poecdn.com/js/lib/require-2.3.2.js?v=fb734febccaaa258d2fe03b3dca5e0a6"></script>
         <script type="text/javascript">
-          window.characterLevel = 94;
+          window.characterLevel = {{character.level}};
         </script>
 <script type="text/javascript">
     //<!--
@@ -133,8 +133,8 @@
     //<!--
     require(["main"], function() {
     require(["PoE/Backbone/Model/Character/Character", "PoE/Inventory/InventoryManager"], function(C, I) {
-        var c = new C({"name":"IwishEleCouldPoison","league":"Legacy","classId":2,"ascendancyClass":3,"class":"Pathfinder","level":81});
-        var options = {"el":"#profile-inventory-controls","accountName":"Mathil","equippedOnly":true};
+        var c = new C({"name":{{character.name}},"league":{{character.league}},"classId":{{character.classId}},"ascendancyClass":{{character.ascendancyClass}},"class":{{character.classs}},"level":{{skilltrees.0.level}} });
+        var options = {"el":"#profile-inventory-controls","accountName":{{character.account.name}},"equippedOnly":true};
         options.activeCharacter = c;
         var i = new I(options);
         i.render();

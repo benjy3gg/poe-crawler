@@ -62,7 +62,7 @@ class SkillTreeDetailView(DetailView):
 class CharacterDetailView(DetailView):
 
     model = Character
-    template_name = "character_detail.html"
+    template_name = "test.html"
 
     def get_context_data(self, **kwargs):
         context = super(CharacterDetailView, self).get_context_data()
@@ -72,16 +72,17 @@ class CharacterDetailView(DetailView):
         print(aggregate)
         context["min_level"] = aggregate["level__min"]
         context["max_level"] = aggregate["level__max"]
-        skillTrees_ = []
+        skillTrees_ = {}
         lastLevel = -1
         for skillTree in skillTrees:
             if skillTree.level == lastLevel:
                 skillTrees_.pop()
                 skillTrees_.append(skillTree)
             else:
-                skillTrees_.append(skillTree)
+                skillTrees_[skillTree.level] = skillTree
             lastLevel = skillTree.level
         context["skilltrees"] = skillTrees_
+        context["character"] = Character.objects.get(pk=character_pk)
         return context
 
 @csrf_exempt

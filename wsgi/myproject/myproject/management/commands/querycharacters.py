@@ -115,4 +115,5 @@ def getSkillTreeDataForCharacter(accountName, characterName):
         accountName, characterName)
 
 
-    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded, "characterJSON": json.dumps(characterPassivesJson, sort_keys=True), "itemsJSON": json.dumps(itemsJson, sort_keys=True)}
+    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded, "characterJSON": json.dumps(characterPassivesJson, sort_keys=True), "itemsJSON": json.dumps(itemsJson, sort_keys=True),
+    'classId': character["classId"], 'ascendancyClass': character["ascendancyClass"], 'class': character["class"], 'league': character["league"]}
