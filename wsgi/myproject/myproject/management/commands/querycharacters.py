@@ -77,17 +77,18 @@ def getSkillTreeDataForCharacter(accountName, characterName):
     characterPassivesUrl = "http://www.pathofexile.com/character-window/get-passive-skills?reqData=0&character={}&accountName={}".format(
         characterName, accountName)
     itemsUrl = "http://www.pathofexile.com/character-window/get-items?character={}&accountName={}".format(
-        characterName, accountName)"
+        characterName, accountName)
 
     characterJson = getJsonFromUrl(characterDataUrl)
     characterPassivesJson = getJsonFromUrl(characterPassivesUrl)
     itemsJson = getJsonFromUrl(itemsUrl)
     hashes = characterPassivesJson["hashes"]
 
-    for char in characterJson:
-        if char["name"] == characterName:
+    if char:
+        for char in characterJson:
+            if char["name"] == characterName:
             #print (json.dumps(char, indent=4, sort_keys=True))
-            character = char
+                character = char
     # print (json.dumps(characterJson, indent=4, sort_keys=True))
 
 
@@ -110,4 +111,4 @@ def getSkillTreeDataForCharacter(accountName, characterName):
         accountName, characterName)
 
 
-    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded, "characterJSON": characterPassivesJSON, "itemsJSON": itemsJSON, }
+    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded, "characterJSON": characterPassivesJson, "itemsJSON": itemsJson, }
