@@ -1,7 +1,7 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, get_list_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Avg, Max, Min
 from django.core.files import File
@@ -122,12 +122,12 @@ def character_get_passive_skills(request):
     account = request.GET.get('account', '')
     character = request.GET.get('character', '')
     level = request.GET.get('level', 0)
-    skilltree = get_object_or_404(SkillTree, account__name=account, character__name=character, level=int(level))
+    skilltree = SkillTree.objects.filter(account__name=account, character__name=character, level=int(level)).order_by("-created_at").first()
     return JsonResponse(json.loads(skilltree.characterJSON))
 
 def character_get_items(request):
     account = request.GET.get('account', '')
     character = request.GET.get('character', '')
     level = request.GET.get('level', 0)
-    skilltree = get_object_or_404(SkillTree, account__name=account, character__name=character, level=int(level))
+    skilltree = SkillTree.objects.filter(account__name=account, character__name=character, level=int(level)).order_by("-created_at").first()
     return JsonResponse(json.loads(skilltree.itemsJSON))
