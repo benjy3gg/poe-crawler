@@ -3625,7 +3625,7 @@ define("PoE/API/Character", ["jquery", "PoE/Backbone/Collection/Item/ItemCollect
               , i = {
                 character: n.characterName,
                 account: n.accountName,
-                level: window.characterLevel
+                level: n.activeCharacter.attributes.level
             };
             return n.accountName && (i.accountName = n.accountName),
             e.ajax({
