@@ -25,20 +25,21 @@ class Command(BaseCommand):
                         data = getSkillTreeDataForCharacter(account.name, character.name)
                         if not data:
                             self.stdout.write('Error getting data for'.format(account.name, character.name))
-                        try:
-                            """previous = SkillTree.objects.get(account=account, character=character, url=data["fullUrl"], level=int(data["level"])-1)
-                            if previous:
-                                previous.broken = True
-                                previous.save()
-                                self.stdout.write('Deleted previous skillTree "%s"' % skillTree.character.name)"""
-                            skillTree, created = SkillTree.objects.get_or_create(account=account, character=character,
-                                                                        url=data["fullUrl"], level=int(data["level"]), characterJSON=data["characterJSON"], itemsJSON=data["itemsJSON"])
-                            """if created:
-                                image_url = requestImage(data["url"], skillTree.pk)
-                                self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)"""
-                        except Exception as e:
-                            print(e)
-                            self.stdout.write('Found same skillTree already')
+                        else:
+                            try:
+                                """previous = SkillTree.objects.get(account=account, character=character, url=data["fullUrl"], level=int(data["level"])-1)
+                                if previous:
+                                    previous.broken = True
+                                    previous.save()
+                                    self.stdout.write('Deleted previous skillTree "%s"' % skillTree.character.name)"""
+                                skillTree, created = SkillTree.objects.get_or_create(account=account, character=character,
+                                                                            url=data["fullUrl"], level=int(data["level"]), characterJSON=data["characterJSON"], itemsJSON=data["itemsJSON"])
+                                """if created:
+                                    image_url = requestImage(data["url"], skillTree.pk)
+                                    self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)"""
+                            except Exception as e:
+                                print(e)
+                                self.stdout.write('Found same skillTree already')
                     except TypeError:
                         character.active = False
                         character.save()
