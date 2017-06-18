@@ -57,7 +57,6 @@ class SkillTreeDetailView(DetailView):
     model = SkillTree
     template_name = "skilltree_detail.html"
 
-
 class CharacterDetailView(DetailView):
 
     model = Character
@@ -121,3 +120,10 @@ def character_get_passive_skills(request):
     level = request.GET.get('level', 0)
     skilltree = get_object_or_404(SkillTree, account__name=account, character__name=character, level=int(level))
     return skilltree.characterJSON
+
+def character_get_items(request):
+    account = request.GET.get('account', '')
+    character = request.GET.get('character', '')
+    level = request.GET.get('level', 0)
+    skilltree = get_object_or_404(SkillTree, account__name=account, character__name=character, level=int(level))
+    return skilltree.itemsJSON
