@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from .views import SkillTreeListView, SkillTreeDetailView, skilltree_setimage, CharacterDetailView, CharacterListView, AccountListView, character_get_passive_skills
+from .views import SkillTreeListView, SkillTreeDetailView, skilltree_setimage, CharacterDetailView, CharacterListView, AccountListView, character_get_passive_skills, character_overview
+from django.views.generic import TemplateView
 from .settings import MEDIA_ROOT, MEDIA_URL
 from django.conf.urls.static import static
 import debug_toolbar
@@ -31,5 +32,7 @@ urlpatterns = [
     url(r'^skilltree/(?P<skilltree_id>[0-9]+)/setimage/(?P<img_hash>[0-9a-z]+)/$', skilltree_setimage, name='skilltree-setimage'),
     url(r'^__debug__/', include(debug_toolbar.urls)),
     url(r'^character-window/get-passive-skills/$', character_get_passive_skills, name="character-get-passive-skills"),
+    url(r'^character-overview/$', TemplateView.as_view(template_name="test.html"))
+
 ]
 urlpatterns += static(MEDIA_ROOT, document_root=MEDIA_URL)

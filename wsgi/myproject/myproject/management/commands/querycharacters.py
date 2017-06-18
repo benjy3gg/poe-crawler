@@ -23,7 +23,8 @@ class Command(BaseCommand):
                 if character.active:
                     try:
                         data = getSkillTreeDataForCharacter(account.name, character.name)
-                        print(data)
+                        if not data:
+                            self.stdout.write('Error getting data for'.format(account.name, character.name))
                         try:
                             """previous = SkillTree.objects.get(account=account, character=character, url=data["fullUrl"], level=int(data["level"])-1)
                             if previous:
@@ -90,10 +91,9 @@ def getSkillTreeDataForCharacter(accountName, characterName):
     if characterJson:
         for char in characterJson:
             if char["name"] == characterName:
-            #print (json.dumps(char, indent=4, sort_keys=True))
                 character = char
-    # print (json.dumps(characterJson, indent=4, sort_keys=True))
-    #print (json.dumps(itemsJson, indent=4, sort_keys=True))
+    else:
+        return false
 
     passives = b""
     # add SkilltreeVersion
