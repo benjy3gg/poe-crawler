@@ -44,6 +44,8 @@ class SkillTree(models.Model):
     image_url = models.CharField(max_length=20000)
     image_file = models.ImageField(upload_to='images')
     broken = models.BooleanField(default=False)
+    characterJSON = models.CharField(max_length=200000)
+    itemsJSON = models.CharField(max_length=200000)
 
     class Meta:
         verbose_name_plural = "SkillTrees"

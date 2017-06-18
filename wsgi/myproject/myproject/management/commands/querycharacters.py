@@ -30,7 +30,7 @@ class Command(BaseCommand):
                                 previous.save()
                                 self.stdout.write('Deleted previous skillTree "%s"' % skillTree.character.name)"""
                             skillTree, created = SkillTree.objects.get_or_create(account=account, character=character,
-                                                                        url=data["fullUrl"], level=int(data["level"]))
+                                                                        url=data["fullUrl"], level=int(data["level"], characterJSON=data["characterJSON"], itemsJSON=data["itemsJSON"]))
                             if created:
                                 image_url = requestImage(data["url"], skillTree.pk)
                                 self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
@@ -76,9 +76,12 @@ def getSkillTreeDataForCharacter(accountName, characterName):
     characterDataUrl = "http://www.pathofexile.com/character-window/get-characters?accountName={}".format(accountName)
     characterPassivesUrl = "http://www.pathofexile.com/character-window/get-passive-skills?reqData=0&character={}&accountName={}".format(
         characterName, accountName)
+    itemsUrl = "http://www.pathofexile.com/character-window/get-items?character={}&accountName={}".format(
+        characterName, accountName)"
 
     characterJson = getJsonFromUrl(characterDataUrl)
     characterPassivesJson = getJsonFromUrl(characterPassivesUrl)
+    itemsJson = getJsonFromUrl(itemsUrl)
     hashes = characterPassivesJson["hashes"]
 
     for char in characterJson:
@@ -107,4 +110,4 @@ def getSkillTreeDataForCharacter(accountName, characterName):
         accountName, characterName)
 
 
-    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded}
+    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded, "characterJSON": characterPassivesJSON, "itemsJSON": itemsJSON, }

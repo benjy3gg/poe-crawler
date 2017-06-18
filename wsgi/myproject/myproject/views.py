@@ -114,3 +114,10 @@ def get_remote_image(self):
                 )
         self.image_url = filename
         self.save()
+
+def character_get_passive_skills(request):
+    account = request.GET.get('account', '')
+    character = request.GET.get('character', '')
+    level = request.GET.get('level', '')
+    skilltree = get_object_or_404(SkillTree, account=account, character=character, level=level)
+    return skilltree.characterJSON

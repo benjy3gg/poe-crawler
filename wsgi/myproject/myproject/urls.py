@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^skilltree/(?P<pk>[-\w]+)/$', SkillTreeDetailView.as_view(), name='skilltree-detail'),
     url(r'^skilltree/(?P<skilltree_id>[0-9]+)/setimage/(?P<img_hash>[0-9a-z]+)/$', skilltree_setimage, name='skilltree-setimage'),
     url(r'^__debug__/', include(debug_toolbar.urls)),
+    url(r'^character-window/get-passive-skills/$', character_get_passive_skills, name="character-get-passive-skills"),
 ]
 urlpatterns += static(MEDIA_ROOT, document_root=MEDIA_URL)

@@ -18,6 +18,7 @@ BASE_DIR = os.path.dirname(DJ_PROJECT_DIR)
 WSGI_DIR = os.path.dirname(BASE_DIR)
 REPO_DIR = os.path.dirname(WSGI_DIR)
 DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', BASE_DIR)
+WSGI_APPLICATION = 'wsgi.application.application'
 
 import sys
 sys.path.append(os.path.join(REPO_DIR, 'libs'))

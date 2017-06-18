@@ -26,27 +26,6 @@
 <link href="http://web.poecdn.com/css/http/screen.css?v=c4d0f14c1fb9a3def39b239674bc7e8d" media="screen" rel="stylesheet" type="text/css" >
 <body class="en_US noJS ">
             <div class="container">
-        <div class="header en">
-            <div class="controls">
-                <div id="statusBar"><div class="statusBarCenter"></div><div class="statusBarRight"></div><div class="row2 loggedOut"><a class="statusItem" href="/login">LOG IN</a><a class="statusItem" href="/account/create">CREATE ACCOUNT</a><a class="statusItem" href="/support">CONTACT SUPPORT</a></div></div>                <div class="language-select">
-	                <a href="//pathofexile.com/account/view-profile/Mathil/characters"><span class="en"><img src="http://web.poecdn.com/image/lang/GB.png"/></span></a>
-	                <a href="//br.pathofexile.com/account/view-profile/Mathil/characters"><span class="br"><img src="http://web.poecdn.com/image/lang/BR.png"/></span></a>
-					<a href="//ru.pathofexile.com/account/view-profile/Mathil/characters"><span class="ru"><img src="http://web.poecdn.com/image/lang/RU.png"/></span></a>
-                    <a href="//th.pathofexile.com/account/view-profile/Mathil/characters"><span class="ru"><img src="http://web.poecdn.com/image/lang/TH.png"/></span></a>
-                </div>                                <a id="mainLogoLink" href="/">
-                    <span>Path of Exile</span>
-                </a>
-
-                            </div>
-            <ul class="navigation en_US">
-                <li id="nav-home">      <a onclick="return touchMenu()" href="http://pathofexile.com/"><span>Home</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/news">News</a></li><li><a href="https://pathofexile.com/account/create">Create Account</a></li><li><a href="https://pathofexile.com/login">Log In</a></li><li><a href="http://pathofexile.com/forum/view-forum/patch-notes">Patch Notes</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-game">      <a onclick="return touchMenu()" href="https://pathofexile.com/game"><span>Game</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/video">Videos</a></li><li><a href="http://pathofexile.com/gallery">Gallery</a></li><li class="separator"></li><li><a href="https://pathofexile.com/game">Overview</a></li><li><a href="http://pathofexile.com/passive-skill-tree">Passive Tree</a></li><li><a href="http://pathofexile.com/ascendancy/classes">Ascendancy Classes</a></li><li><a href="http://pathofexile.com/item-data">Items</a></li><li class="separator"></li><li><a href="http://pathofexile.gamepedia.com/">Community Wiki</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-forum">     <a onclick="return touchMenu()" href="http://pathofexile.com/forum"><span>Forum</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/forum">Index</a></li><li><a href="http://pathofexile.com/forum/view-thread/1457463">Code of Conduct</a></li><li><a href="http://pathofexile.com/search">Search</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-events">    <a onclick="return touchMenu()" href="http://pathofexile.com/events"><span>Events</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/events">Event Calendar</a></li><li><a href="http://pathofexile.com/seasons">Race Season</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-ladders">   <a onclick="return touchMenu()" href="http://pathofexile.com/forum/view-thread/1841349"><span>Ladders</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/forum/view-thread/1841349">Legacy</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841345">Hardcore Legacy</a></li><li><a href="http://pathofexile.com/forum/view-thread/71278">Standard</a></li><li><a href="http://pathofexile.com/forum/view-thread/71276">Hardcore</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841364">SSF Legacy</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841361">SSF Hardcore Legacy</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841357">SSF Standard</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841353">SSF Hardcore</a></li><li class="separator"></li><li><a href="http://pathofexile.com/seasons/ladder">Race Season Points</a></li><li><a href="http://pathofexile.com/signature-races/ladder">Signature Races</a></li><li><a href="http://pathofexile.com/labyrinth">Labyrinth Ladders</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-shop">      <a onclick="return touchMenu()" href="https://pathofexile.com/shop"><span>Shop</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="https://pathofexile.com/purchase">Buy Packs</a></li><li><a href="https://pathofexile.com/shop">Microtransactions</a></li><li><a href="https://pathofexile.com/shop/category/daily-deals">Specials</a></li></ul><div class="bot"></div></div></li>
-                            </ul>
-        </div>
         <div class="content">
             <div class="backdrop"></div>
             <div class="wrapper">
@@ -129,7 +108,7 @@
             BASEURL = '';
 
             require.config({
-                baseUrl: "/js",
+                baseUrl: "file:///C:\DEV\crawler\wsgi\itemview\js",
                 paths : {"main":"main.d95bece6eb59fa99f8294dacaed39d6cc22575ee","plugins":"plugins.37f35ba1022384922a65f22458223796407fea30","skilltree":"skilltree.02e8a25b056370ed42d70deb7a261da13e50680b"},
                 shim: {"main":{"deps":["config","plugins"]},"plugins":{"deps":["config"]}}
             });
