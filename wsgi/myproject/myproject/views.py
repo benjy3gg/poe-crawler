@@ -10,6 +10,7 @@ from urllib.request import urlretrieve
 from django.http import JsonResponse
 import os
 import logging
+import json
 
 import cloudinary
 import cloudinary.uploader
