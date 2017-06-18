@@ -16,13 +16,14 @@ class Command(BaseCommand):
             characterDataUrl = "http://www.pathofexile.com/character-window/get-characters?accountName={}".format(account.name)
             characters = getCharacterData(characterDataUrl)
             for char in characters:
-                c = Character.objects.create(name=char, active=True)
+                c = Character.objects.create(name=char["name"], active=True, classId=char["classId"], ascendancyClass=char["ascendancyClass"], classs=char["class"], league=char["league"])
                 account.characters.add(c)
                 account.save()
             for character in account.characters.all():
                 if character.active:
                     try:
                         data = getSkillTreeDataForCharacter(account.name, character.name)
+                        self.stdout.write('Found same skillTree already')
                         if not data:
                             self.stdout.write('Error getting data for'.format(account.name, character.name))
                         else:
@@ -66,7 +67,7 @@ def getCharacterData(characterDataUrl):
         for char in characterJson:
             if char["league"] in ["Hardcore Legacy", "Legacy", "SSF HC Legacy"]:
                 if not Character.objects.filter(name=char["name"]).exists():
-                    chars.append(char["name"])
+                    chars.append(char)
     return chars
 
 def getJsonFromUrl(requestUrl):

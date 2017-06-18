@@ -82,6 +82,7 @@ class CharacterDetailView(DetailView):
                 skillTrees_[skillTree.level] = skillTree
             lastLevel = skillTree.level
         context["skilltrees"] = skillTrees_
+        context["skilltree"] = skillTrees_[context["min_level"]]
         context["character"] = Character.objects.get(pk=character_pk)
         return context
 

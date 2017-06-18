@@ -5,8 +5,8 @@ class Character(models.Model):
     name = models.CharField(max_length=200)
     active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    classId = models.IntegerField()
-    ascendancyClass = models.IntegerField()
+    classId = models.IntegerField(default=-1)
+    ascendancyClass = models.IntegerField(default=-1)
     classs = models.CharField(default="", max_length=100)
     league = models.CharField(default="", max_length=100)
 
