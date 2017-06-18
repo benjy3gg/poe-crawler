@@ -28,7 +28,7 @@
             <div class="backdrop"></div>
             <div class="wrapper">
               <ul>
-              {% for key, value in skilltrees %}
+              {% for key, value in skilltrees.items %}
                     <li class="skilltree-link" data-level="{{key}}"> {{ key }}: {{ value }} </li>
               {% endfor %}
             </ul>
@@ -115,6 +115,22 @@
         i.render();
     });
 });    //-->
+</script>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+  $('.skilltree-link').click(function(e) {
+    level = $(this).data("level");
+    require(["main"], function() {
+    require(["PoE/Backbone/Model/Character/Character", "PoE/Inventory/InventoryManager"], function(C, I) {
+        var c = new C({"name":"{{character.name}}","league":"{{character.league}}","classId":"{{character.classId}}","ascendancyClass":"{{character.ascendancyClass}}","class":"{{character.classs}}","level":level });
+        var options = {"el":"#profile-inventory-controls","accountName":"{{account.name}}","equippedOnly":true};
+        options.activeCharacter = c;
+        var i = new I(options);
+        i.render();
+    });
+  })
+});
 </script>
 
 <script type="text/javascript">
