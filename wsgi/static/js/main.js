@@ -5326,7 +5326,9 @@ define("PoE/Inventory/InventoryManager", ["plugins", "Backbone", "PoE/Handlebars
               , s = n.activeCharacter.get("ascendancyClass")
               , o = {
                 reqData: 0,
-                character: i
+                character: i,
+                account: n.accountName,
+                level: window.characterLevel
             };
             n.accountName && (o.accountName = n.accountName),
             e.ajax({
