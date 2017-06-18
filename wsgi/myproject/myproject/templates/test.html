@@ -9,6 +9,12 @@
 <link href="http://web.poecdn.com/image/favicon/safari-pinned-tab.svg" rel="mask-icon" >
 <link href="http://web.poecdn.com/image/favicon/favicon.ico" rel="shortcut icon" >
 <link href="http://web.poecdn.com/css/http/screen.css?v=c4d0f14c1fb9a3def39b239674bc7e8d" media="screen" rel="stylesheet" type="text/css" >
+<script type="text/javascript">
+(function(e,f){var b={},g=function(a){b[a]&&(f.clearInterval(b[a]),b[a]=null)};e.fn.waitUntilExists=function(a,h,j){var c=this.selector,d=e(c),k=d.not(function(){return e(this).data("waitUntilExists.found")});"remove"===a?g(c):(k.each(a).data("waitUntilExists.found",!0),h&&d.length?g(c):j||(b[c]=f.setInterval(function(){d.waitUntilExists(a,h,!0)},500)));return d}})(jQuery,window);
+</script>
+<script type="text/javascript">
+  jQuery("#sidebar-dock").waitUntilExists(function() { $(this).click()});
+</script>
 <body class="en_US noJS ">
             <div class="container">
         <div class="header en">
@@ -138,18 +144,6 @@
 
 <script type="text/javascript">
     //<!--
-
-    require(['main'], function() {
-        require(['skilltree'], function (PassiveSkillTree) {
-            
-        });
-    });
-    //-->
-</script>
-
-<script type="text/javascript">
-    //<!--
-
     require(["main"], function() {
         require(["default/showcase-pins"]);
     });
