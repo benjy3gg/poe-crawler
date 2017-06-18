@@ -5330,7 +5330,7 @@ define("PoE/Inventory/InventoryManager", ["plugins", "Backbone", "PoE/Handlebars
                 reqData: 0,
                 character: i,
                 account: n.accountName,
-                level: window.characterLevel
+                level: n.activeCharacter.attributes.level
             };
             n.accountName && (o.accountName = n.accountName),
             e.ajax({

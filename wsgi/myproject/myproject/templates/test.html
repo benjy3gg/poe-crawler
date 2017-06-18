@@ -23,19 +23,15 @@
                 </a>
 
                             </div>
-            <ul class="navigation en_US">
-                <li id="nav-home">      <a onclick="return touchMenu()" href="http://pathofexile.com/"><span>Home</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/news">News</a></li><li><a href="https://pathofexile.com/account/create">Create Account</a></li><li><a href="https://pathofexile.com/login">Log In</a></li><li><a href="http://pathofexile.com/forum/view-forum/patch-notes">Patch Notes</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-game">      <a onclick="return touchMenu()" href="https://pathofexile.com/game"><span>Game</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/video">Videos</a></li><li><a href="http://pathofexile.com/gallery">Gallery</a></li><li class="separator"></li><li><a href="https://pathofexile.com/game">Overview</a></li><li><a href="http://pathofexile.com/passive-skill-tree">Passive Tree</a></li><li><a href="http://pathofexile.com/ascendancy/classes">Ascendancy Classes</a></li><li><a href="http://pathofexile.com/item-data">Items</a></li><li class="separator"></li><li><a href="http://pathofexile.gamepedia.com/">Community Wiki</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-forum">     <a onclick="return touchMenu()" href="http://pathofexile.com/forum"><span>Forum</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/forum">Index</a></li><li><a href="http://pathofexile.com/forum/view-thread/1457463">Code of Conduct</a></li><li><a href="http://pathofexile.com/search">Search</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-events">    <a onclick="return touchMenu()" href="http://pathofexile.com/events"><span>Events</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/events">Event Calendar</a></li><li><a href="http://pathofexile.com/seasons">Race Season</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-ladders">   <a onclick="return touchMenu()" href="http://pathofexile.com/forum/view-thread/1841349"><span>Ladders</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="http://pathofexile.com/forum/view-thread/1841349">Legacy</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841345">Hardcore Legacy</a></li><li><a href="http://pathofexile.com/forum/view-thread/71278">Standard</a></li><li><a href="http://pathofexile.com/forum/view-thread/71276">Hardcore</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841364">SSF Legacy</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841361">SSF Hardcore Legacy</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841357">SSF Standard</a></li><li><a href="http://pathofexile.com/forum/view-thread/1841353">SSF Hardcore</a></li><li class="separator"></li><li><a href="http://pathofexile.com/seasons/ladder">Race Season Points</a></li><li><a href="http://pathofexile.com/signature-races/ladder">Signature Races</a></li><li><a href="http://pathofexile.com/labyrinth">Labyrinth Ladders</a></li></ul><div class="bot"></div></div></li>
-                <li id="nav-shop">      <a onclick="return touchMenu()" href="https://pathofexile.com/shop"><span>Shop</span></a><div class="dropDown"><div class="top"></div><ul><li><a href="https://pathofexile.com/purchase">Buy Packs</a></li><li><a href="https://pathofexile.com/shop">Microtransactions</a></li><li><a href="https://pathofexile.com/shop/category/daily-deals">Specials</a></li></ul><div class="bot"></div></div></li>
-                            </ul>
         </div>
         <div class="content">
             <div class="backdrop"></div>
             <div class="wrapper">
-
+              <ul>
+              {% for key, value in skilltrees %}
+                    <li class="skilltree-link" data-level="{{key}}"> {{ key }}: {{ value }} </li>
+              {% endfor %}
+            </ul>
 
 
 
@@ -104,9 +100,6 @@
         <div id="poe-popup-container"></div>
     <div id="fb-root"></div>
         <script type="text/javascript" src="http://web.poecdn.com/js/lib/require-2.3.2.js?v=fb734febccaaa258d2fe03b3dca5e0a6"></script>
-        <script type="text/javascript">
-          window.characterLevel = "{{min_level}}";
-        </script>
 <script type="text/javascript">
     //<!--
                 document.body.className = document.body.className.replace( /(?:^|\s)noJS(?!\S)/ , '');
