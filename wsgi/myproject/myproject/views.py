@@ -76,8 +76,7 @@ class CharacterDetailView(DetailView):
         lastLevel = -1
         for skillTree in skillTrees:
             if skillTree.level == lastLevel:
-                skillTrees_.pop()
-                skillTrees_.append(skillTree)
+                skillTrees_[skillTree.level] = skillTree
             else:
                 skillTrees_[skillTree.level] = skillTree
             lastLevel = skillTree.level
