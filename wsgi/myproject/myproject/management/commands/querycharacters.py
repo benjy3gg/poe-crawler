@@ -23,6 +23,7 @@ class Command(BaseCommand):
                 if character.active:
                     try:
                         data = getSkillTreeDataForCharacter(account.name, character.name)
+                        print(data)
                         try:
                             """previous = SkillTree.objects.get(account=account, character=character, url=data["fullUrl"], level=int(data["level"])-1)
                             if previous:
@@ -30,11 +31,12 @@ class Command(BaseCommand):
                                 previous.save()
                                 self.stdout.write('Deleted previous skillTree "%s"' % skillTree.character.name)"""
                             skillTree, created = SkillTree.objects.get_or_create(account=account, character=character,
-                                                                        url=data["fullUrl"], level=int(data["level"], characterJSON=data["characterJSON"], itemsJSON=data["itemsJSON"]))
-                            if created:
+                                                                        url=data["fullUrl"], level=int(data["level"]), characterJSON=data["characterJSON"], itemsJSON=data["itemsJSON"])
+                            """if created:
                                 image_url = requestImage(data["url"], skillTree.pk)
-                                self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)
-                        except:
+                                self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)"""
+                        except Exception as e:
+                            print(e)
                             self.stdout.write('Found same skillTree already')
                     except TypeError:
                         character.active = False
@@ -57,10 +59,11 @@ def getUrl(requestUrl):
 def getCharacterData(characterDataUrl):
     characterJson = getJsonFromUrl(characterDataUrl)
     chars = []
-    for char in characterJson:
-        if char["league"] in ["Hardcore Legacy", "Legacy", "SSF HC Legacy"]:
-            if not Character.objects.filter(name=char["name"]).exists():
-                chars.append(char["name"])
+    if characterJson:
+        for char in characterJson:
+            if char["league"] in ["Hardcore Legacy", "Legacy", "SSF HC Legacy"]:
+                if not Character.objects.filter(name=char["name"]).exists():
+                    chars.append(char["name"])
     return chars
 
 def getJsonFromUrl(requestUrl):
@@ -84,13 +87,13 @@ def getSkillTreeDataForCharacter(accountName, characterName):
     itemsJson = getJsonFromUrl(itemsUrl)
     hashes = characterPassivesJson["hashes"]
 
-    if char:
+    if characterJson:
         for char in characterJson:
             if char["name"] == characterName:
             #print (json.dumps(char, indent=4, sort_keys=True))
                 character = char
     # print (json.dumps(characterJson, indent=4, sort_keys=True))
-
+    #print (json.dumps(itemsJson, indent=4, sort_keys=True))
 
     passives = b""
     # add SkilltreeVersion
@@ -111,4 +114,4 @@ def getSkillTreeDataForCharacter(accountName, characterName):
         accountName, characterName)
 
 
-    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded, "characterJSON": characterPassivesJson, "itemsJSON": itemsJson, }
+    return  {"fullUrl": fullUrl, "level": character["level"], "url": encoded, "characterJSON": json.dumps(characterPassivesJson), "itemsJSON": json.dumps(itemsJson)}
