@@ -5251,7 +5251,7 @@ define("PoE/PassiveSkillTree/GenerateLink", ["plugins", "PoE/PassiveSkillTree/By
             u.appendInt16(s[a]);
         var l = e.base64.encode(u.getDataString());
         return l = l.replace(/\+/g, "-").replace(/\//g, "_"),
-        (o ? "https://www.pathofexile.com/fullscreen-passive-skill-tree/" : "https://www.pathofexile.com/passive-skill-tree/") + l
+        (o ? "http://poedb.tw/us/fullscreen-passive-skill-tree/" : "http://poedb.tw/us/passive-skill-tree/") + l
     }
 }),
 define("text!PoE/Inventory/InventoryManager.hbt", [], function() {
