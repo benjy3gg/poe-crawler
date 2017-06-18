@@ -5344,7 +5344,7 @@ define("PoE/Inventory/InventoryManager", ["plugins", "Backbone", "PoE/Handlebars
                         return;
                     o.character && o.accountName && (t = "?accountName=" + o.accountName + "&characterName=" + o.character),
                     window.enablePassiveLink && (window.location.href = u(r, s, e.hashes, !1) + t),
-                    n.equippedOnly && n.$passiveSkillTree.html('<iframe sandbox="allow-popups allow-scripts allow-forms allow-same-origin allow-top-navigation" src="' + u(r, s, e.hashes, !0) + t + '" width="903" height="630" scrolling="yes" frameborder="0"></iframe>')
+                    n.equippedOnly && n.$passiveSkillTree.html('<iframe sandbox="allow-popups allow-scripts allow-forms allow-same-origin allow-top-navigation" src="' + u(r, s, e.hashes, !0) + '" width="903" height="630" scrolling="yes" frameborder="0"></iframe>')
                 }
             })
         },
