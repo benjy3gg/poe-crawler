@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from .views import SkillTreeListView, SkillTreeDetailView, skilltree_setimage, CharacterDetailView, CharacterListView, AccountListView, character_get_passive_skills, character_overview
+from .views import SkillTreeListView, SkillTreeDetailView, skilltree_setimage, CharacterDetailView, CharacterListView, AccountListView, character_get_passive_skills
 from django.views.generic import TemplateView
 from .settings import MEDIA_ROOT, MEDIA_URL
 from django.conf.urls.static import static
