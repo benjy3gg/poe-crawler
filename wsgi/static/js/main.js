@@ -3630,7 +3630,7 @@ define("PoE/API/Character", ["jquery", "PoE/Backbone/Collection/Item/ItemCollect
             return n.accountName && (i.accountName = n.accountName),
             e.ajax({
                 url: "/character-window/get-items",
-                type: "POST",
+                type: "GET",
                 dataType: "json",
                 data: i,
                 success: function(e) {
