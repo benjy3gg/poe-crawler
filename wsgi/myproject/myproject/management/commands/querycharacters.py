@@ -33,7 +33,7 @@ class Command(BaseCommand):
                                     previous.save()
                                     self.stdout.write('Deleted previous skillTree "%s"' % skillTree.character.name)"""
                                 skillTree, created = SkillTree.objects.get_or_create(account=account, character=character,
-                                                                            url=data["fullUrl"], level=int(data["level"]), characterJSON=data["characterJSON"], itemsJSON=data["itemsJSON"])
+                                                                            url=data["fullUrl"], level=int(data["level"]))
                                 """if created:
                                     image_url = requestImage(data["url"], skillTree.pk)
                                     self.stdout.write('Successfully created skillTree "%s"' % skillTree.character.name)"""

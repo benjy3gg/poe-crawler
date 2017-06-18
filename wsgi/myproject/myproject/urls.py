@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^skilltree/(?P<skilltree_id>[0-9]+)/setimage/(?P<img_hash>[0-9a-z]+)/$', skilltree_setimage, name='skilltree-setimage'),
     url(r'^__debug__/', include(debug_toolbar.urls)),
     url(r'^character-window/get-passive-skills/$', character_get_passive_skills, name="character-get-passive-skills"),
-    url(r'^character-window/get-items/$', character_get_passive_skills, name="character-get-passive-skills"),
+    url(r'^character-window/get-items/$', character_get_items, name="character-get-items"),
     url(r'^character-overview/$', TemplateView.as_view(template_name="test.html"))
 
 ]
