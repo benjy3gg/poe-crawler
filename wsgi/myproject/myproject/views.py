@@ -135,7 +135,7 @@ def character_get_items(request):
 def account_get_characters(request):
     accountName = request.GET.get('accountName', '')
     account = Account.objects.get(name=accountName)
-    array = {}
+    array = []
     for idx, character in enumerate(account.characters.all()):
         char = {}
         char['ascendancyClass'] = character.ascendancyClass
@@ -144,5 +144,5 @@ def account_get_characters(request):
         char['league'] = character.league
         char['level'] = character.get_max_level()["level__max"]
         char['name'] = character.name
-        array[idx] = char
+        array.append(char)
     return JsonResponse(json.dumps(array), safe=False)
