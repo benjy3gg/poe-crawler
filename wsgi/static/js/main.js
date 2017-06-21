@@ -5096,19 +5096,13 @@ define("PoE/Inventory/InventoryManagerMenuCharacter", ["jquery", "Backbone", "Po
         },
         characterClicked: function() {
             this.model.get("expired") || r.trigger("activeCharacterChanged", this.model);
-            span = $($(e.$el).find('span')[0])
-            if (typeof(span.data("levels")) == "string") {
-              levels = span.data('levels').split(",");
-            } else {
-              levels = [span.data('levels')]
-            }
-
-            classs = span.data('class');
-            ascendancyclass = span.data('ascendancyclass');
-            classid = span.data('classid');
-            league = span.data('league');
-            name = span.data('name');
-            accountName = "{{account.name}}"
+            attributes = this.model.attributes
+            levels = attributes.levels
+            classs = attributes.class
+            ascendancyclass = attributes.ascendancyclass
+            classid = attributes.classid
+            league = attributes.league
+            name = attributes.name
             $.each(levels, function (i, item) {
                 $('#levelDropdown').append(
                   $('<option>', {
