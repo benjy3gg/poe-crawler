@@ -1,5 +1,6 @@
 from django.db import models
 from sorl.thumbnail import ImageField
+from django.db.models import Max
 
 class Character(models.Model):
     name = models.CharField(max_length=200)
@@ -22,6 +23,9 @@ class Character(models.Model):
     def get_skilltrees(self):
         skilltrees = SkillTree.objects.filter(character=self)
         return skilltrees
+
+    def get_max_level(self):
+        return SkillTree.objects.filter(character=self).aggregate(Max("level"))
 
 
 class Account(models.Model):
