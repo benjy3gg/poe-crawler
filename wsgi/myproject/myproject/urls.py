@@ -35,8 +35,7 @@ urlpatterns = [
     url(r'^character-window/get-passive-skills/$', character_get_passive_skills, name="character-get-passive-skills"),
     url(r'^character-window/get-items/$', character_get_items, name="character-get-items"),
     url(r'^character-window/get-characters/$', account_get_characters, name="character-get-characters"),
-    url(r'^character-overview/$', TemplateView.as_view(template_name="test.html"))
-    url(r'^character-overview/$', TemplateView.as_view(template_name="test.html"))
+    url(r'^character-overview/$', TemplateView.as_view(template_name="test.html")),
 
 
 ]
