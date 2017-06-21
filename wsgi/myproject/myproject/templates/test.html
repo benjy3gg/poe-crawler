@@ -120,10 +120,10 @@ require(["main"], function() {
     $('.levelLink').click(function(e) {
       level = $(this).data("level");
       classs = $(this).data("class");
-      ascendancyclass = $(this).data("class");
-      classid = $(this).data("class");
-      league = $(this).data("class");
-      name = $(this).data("class");
+      ascendancyclass = $(this).data("ascendancyclass");
+      classid = $(this).data("classid");
+      league = $(this).data("league");
+      name = $(this).data("name");
       accountName = "{{account.name}}";
 
       require(["main"], function() {
@@ -139,12 +139,13 @@ require(["main"], function() {
 
 
     $('.character').click(function() {
-      levels = $(this).find('span').data('levels').split(",");
-      classs = $(this).find('span').data('class');
-      ascendancyclass = $(this).find('span').data('ascendancyclass');
-      classid = $(this).find('span').data('classid');
-      league = $(this).find('span').data('league');
-      name = $(this).find('span').data('name');
+      span = $($(this).find('span')[0])
+      levels = span.data('levels').split(",");
+      classs = span.data('class');
+      ascendancyclass = span.data('ascendancyclass');
+      classid = span.data('classid');
+      league = span.data('league');
+      name = span.data('name');
       accountName = "{{account.name}}"
       $.each(levels, function (i, item) {
           $('#levelDropdown').append(
