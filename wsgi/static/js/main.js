@@ -5064,7 +5064,7 @@ define("PoE/API/Account", ["jquery", "PoE/Backbone/Collection/Character/Characte
                 dataType: "json",
                 data: i,
                 success: function(e) {
-                    r.resolve(new t(e))
+                    r.resolve(new t(JSON.parse(e)))
                 }
             }),
             r.promise()
