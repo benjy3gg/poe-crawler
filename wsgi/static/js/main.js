@@ -5088,27 +5088,27 @@ define("PoE/Inventory/InventoryManagerMenuCharacter", ["jquery", "Backbone", "Po
                 e.$el.addClass("active")) : (e.active = !1,
                 e.$el.removeClass("active"))
 
-                  span = $($(e.$el).find('span')[0])
-                  if (typeof(span.data("levels")) == "string") {
-                    levels = span.data('levels').split(",");
-                  } else {
-                    levels = [levels]
-                  }
+                span = $($(e.$el).find('span')[0])
+                if (typeof(span.data("levels")) == "string") {
+                  levels = span.data('levels').split(",");
+                } else {
+                  levels = [span.data('levels')]
+                }
 
-                  classs = span.data('class');
-                  ascendancyclass = span.data('ascendancyclass');
-                  classid = span.data('classid');
-                  league = span.data('league');
-                  name = span.data('name');
-                  accountName = "{{account.name}}"
-                  $.each(levels, function (i, item) {
-                      $('#levelDropdown').append(
-                        $('<option>', {
-                          value: e.model.get("name"),
-                          text : e.model.get("name") + "(" + level + ")"
-                      }).attr({"data-level": item, "data-class": classs, "data-ascendancyclass": ascendancyclass, "data-classid": classid, "data-league": league, "data-name": name,}).addClass('levelLink')
-                    );
-                  });
+                classs = span.data('class');
+                ascendancyclass = span.data('ascendancyclass');
+                classid = span.data('classid');
+                league = span.data('league');
+                name = span.data('name');
+                accountName = "{{account.name}}"
+                $.each(levels, function (i, item) {
+                    $('#levelDropdown').append(
+                      $('<option>', {
+                        value: e.model.get("name"),
+                        text : e.model.get("name") + "(" + item + ")"
+                    }).attr({"data-level": item, "data-class": classs, "data-ascendancyclass": ascendancyclass, "data-classid": classid, "data-league": league, "data-name": name,}).addClass('levelLink')
+                  );
+                });
 
             })
         },
