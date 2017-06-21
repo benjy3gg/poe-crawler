@@ -28,7 +28,7 @@ class Character(models.Model):
         return SkillTree.objects.filter(character=self).aggregate(Max("level"))
 
     def get_levels(self):
-        return list(SkillTree.objects.filter(character=self).values_list('level', flat=True)).distinct()
+        return list(SkillTree.objects.filter(character=self).values_list('level', flat=True).distinct())
 
 
 class Account(models.Model):
