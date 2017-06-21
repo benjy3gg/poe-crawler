@@ -5103,11 +5103,12 @@ define("PoE/Inventory/InventoryManagerMenuCharacter", ["jquery", "Backbone", "Po
             classid = attributes.classid
             league = attributes.league
             name = attributes.name
+            $('#levelDropdown').empty()
             $.each(levels, function (i, item) {
                 $('#levelDropdown').append(
                   $('<option>', {
-                    value: e.model.get("name"),
-                    text : e.model.get("name") + "(" + item + ")"
+                    value: name,
+                    text : name + "(" + item + ")"
                 }).attr({"data-level": item, "data-class": classs, "data-ascendancyclass": ascendancyclass, "data-classid": classid, "data-league": league, "data-name": name,}).addClass('levelLink')
               );
             });
