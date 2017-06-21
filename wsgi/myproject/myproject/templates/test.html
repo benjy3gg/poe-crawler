@@ -23,11 +23,12 @@
         <div class="content">
             <div class="backdrop"></div>
             <div class="wrapper">
-              <ul>
-              {% for key, value in skilltrees.items %}
-                    <li class="skilltree-link" data-level="{{key}}"> {{ key }}: {{ value }} </li>
-              {% endfor %}
-            </ul>
+              <select>
+                {% for key, value in skilltrees.items %}
+                      <option class="skilltree-link" data-level="{{key}}"> {{ key }}: {{ value }} </option>
+                {% endfor %}
+            </select>
+
 
 
 
