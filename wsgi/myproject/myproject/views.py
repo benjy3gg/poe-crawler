@@ -134,7 +134,7 @@ def character_get_items(request):
 
 def account_get_characters(request):
     account = request.GET.get('account', '')
-    characters = Account.objects.filter(account__name=account).characters
+    characters = Account.objects.filter(name=account).characters
     array = []
     for character in characters:
         array.append(character)
