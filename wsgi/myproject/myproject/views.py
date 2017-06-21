@@ -135,8 +135,7 @@ def character_get_items(request):
 def account_get_characters(request):
     accountName = request.GET.get('accountName', '')
     account = Account.objects.get(name=accountName)
-    characters = account.characters.objects.all()
     array = []
-    for character in characters:
+    for character in account.characters:
         array.append(character)
     return JsonResponse(json.dumps(array))
