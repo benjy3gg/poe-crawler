@@ -140,7 +140,12 @@ require(["main"], function() {
 
     $('.character').click(function() {
       span = $($(this).find('span')[0])
-      levels = span.data('levels').split(",");
+      if (typeof(span.data("levels")) == "string") {
+        levels = span.data('levels').split(",");
+      } else {
+        levels = [levels]
+      }
+
       classs = span.data('class');
       ascendancyclass = span.data('ascendancyclass');
       classid = span.data('classid');
