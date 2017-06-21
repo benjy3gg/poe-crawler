@@ -64,7 +64,7 @@ def getCharacterData(characterDataUrl):
     chars = []
     if characterJson:
         for char in characterJson:
-            #if char["league"] in ["Hardcore Legacy", "Legacy", "SSF HC Legacy"]:
+            if char["league"] not in ["Standard", "Void", "Hardcore", "SSF Standard League", "SSF Hardcore League"]:
             if not Character.objects.filter(name=char["name"]).exists():
                 chars.append(char)
     return chars
