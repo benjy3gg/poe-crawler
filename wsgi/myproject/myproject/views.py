@@ -136,7 +136,7 @@ def account_get_characters(request):
     accountName = request.GET.get('accountName', '')
     account = Account.objects.get(name=accountName)
     array = []
-    for idx, character in enumerate(account.characters.all()):
+    for idx, character in enumerate(account.characters.all().order_by("-created_at")):
         char = {}
         char['ascendancyClass'] = character.ascendancyClass
         char['class'] = character.classs
