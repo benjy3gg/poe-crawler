@@ -138,12 +138,12 @@ require(["main"], function() {
     })
 
     $('.levelLink').click(function(e) {
-      level = $(this).data("level");
-      classs = $(this).data("class");
-      ascendancyclass = $(this).data("ascendancyclass");
-      classid = $(this).data("classid");
-      league = $(this).data("league");
-      name = $(this).data("name");
+      level = $( this ).find( "option:checked" ).data("level");
+      classs = $( this ).find( "option:checked" ).data("class");
+      ascendancyclass = $( this ).find( "option:checked" ).data("ascendancyclass");
+      classid = $( this ).find( "option:checked" ).data("classid");
+      league = $( this ).find( "option:checked" ).data("league");
+      name = $( this ).find( "option:checked" ).data("name");
       accountName = "{{account.name}}";
 
       require(["main"], function() {
