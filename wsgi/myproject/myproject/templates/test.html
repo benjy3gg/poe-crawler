@@ -25,7 +25,7 @@
             <div class="wrapper">
               <select id="levelDropdown">
                 {% for key, value in skilltrees.items %}
-                      <option class="levelDropdownOption" data-level="{{key}}"> {{ key }}: {{ value }} </option>
+                      <option class="levelLink" data-level="{{key}}"> {{ key }}: {{ value }} </option>
                 {% endfor %}
             </select>
 
@@ -114,21 +114,48 @@
 });    //-->
 </script>
 <script type="text/javascript">
+
 require(["main"], function() {
   $( document ).ready(function() {
-    $('.skilltree-link').click(function(e) {
+    $('.levelLink').click(function(e) {
       level = $(this).data("level");
-      characterName = $('.character active').find('.characterName').text();
+      classs = $(this).data("class");
+      ascendancyclass = $(this).data("class");
+      classid = $(this).data("class");
+      league = $(this).data("class");
+      name = $(this).data("class");
+      accountName = "{{account.name}}";
+
       require(["main"], function() {
         require(["PoE/Backbone/Model/Character/Character", "PoE/Inventory/InventoryManager"], function(C, I) {
-            var c = new C({"name":characterName,"league":"{{character.league}}","classId":"{{character.classId}}","ascendancyClass":"{{character.ascendancyClass}}","class":"{{character.classs}}","level":level });
-            var options = {"el":"#profile-inventory-controls","accountName":"{{account.name}}","equippedOnly":true};
+            var c = new C({"name":characterName,"league":league,"classId":classid,"ascendancyClass":ascendancyclass,"class":classs,"level":level });
+            var options = {"el":"#profile-inventory-controls","accountName":accountName,"equippedOnly":true};
             options.activeCharacter = c;
             var i = new I(options);
             i.render();
         });
       })
     });
+
+
+    $('.character').click(function() {
+      levels = $(this).find('span').data('levels').split(",");
+      classs = $(this).find('span').data('class');
+      ascendancyclass = $(this).find('span').data('ascendancyclass');
+      classid = $(this).find('span').data('classid');
+      league = $(this).find('span').data('league');
+      name = $(this).find('span').data('name');
+      accountName = "{{account.name}}"
+      $.each(levels, function (i, item) {
+          $('#levelDropdown').append(
+            $('<option>', {
+              value: item.value,
+              text : item.text
+          }).attr({"data-level": item, "data-class": classs, "data-ascendancyclass": ascendancyclass, "data-classid": classid, "data-league": league, "data-name": name,})).addClass('levelLink')
+        ));
+      });
+    });
+
   });
 })
 </script>
