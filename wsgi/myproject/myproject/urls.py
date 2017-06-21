@@ -25,10 +25,10 @@ import debug_toolbar
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', SkillTreeListView.as_view(), name="skilltree-list"),
-    url(r'^character/(?P<pk>[-\w]+)/$', CharacterDetailView.as_view(), name="character-detail"),
+    url(r'^character/(?P<name>[-\w]+)/$', CharacterDetailView.as_view(), name="character-detail"),
     url(r'^characters/$', CharacterListView.as_view(), name="character-list"),
     url(r'^accounts/$', AccountListView.as_view(), name="account-list"),
-    url(r'^account/(?P<slug>[\w-]+)/$', AccountDetailView.as_view(), name="account-detail"),
+    url(r'^account/(?P<name>[\w-]+)/$', AccountDetailView.as_view(), name="account-detail"),
     url(r'^skilltree/(?P<pk>[-\w]+)/$', SkillTreeDetailView.as_view(), name='skilltree-detail'),
     url(r'^skilltree/(?P<skilltree_id>[0-9]+)/setimage/(?P<img_hash>[0-9a-z]+)/$', skilltree_setimage, name='skilltree-setimage'),
     url(r'^__debug__/', include(debug_toolbar.urls)),
