@@ -145,4 +145,4 @@ def account_get_characters(request):
         char['level'] = character.get_max_level()["level__max"]
         char['name'] = character.name
         array.append(char)
-    return JsonResponse(json.dumps(array, safe=False))
+    return JsonResponse(json.dumps(array), safe=False)
