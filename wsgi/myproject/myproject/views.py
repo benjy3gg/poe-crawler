@@ -49,7 +49,7 @@ class AccountDetailView(DetailView):
     template_name = "account_detail.html"
 
     def get_context_data(self, **kwargs):
-        context = super(CharacterDetailView, self).get_context_data()
+        context = super(AccountDetailView, self).get_context_data()
         account_pk = context["account"].id
         context["account"] = Account.objects.get(pk=account_pk)
         character = Character.objects.get(account__pk=account_pk).first()
