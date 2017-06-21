@@ -133,8 +133,9 @@ def character_get_items(request):
     return JsonResponse(json.loads(skilltree.itemsJSON))
 
 def account_get_characters(request):
-    account = request.GET.get('account', '')
-    characters = Account.objects.filter(name=account).characters
+    accountName = request.GET.get('accountName', '')
+    account = Account.objects.get(name=accountName)
+    characters = account.characters.objects.all()
     array = []
     for character in characters:
         array.append(character)
