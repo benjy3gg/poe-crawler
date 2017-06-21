@@ -52,7 +52,7 @@ class AccountDetailView(DetailView):
         context = super(AccountDetailView, self).get_context_data()
         account_pk = context["account"].id
         context["account"] = Account.objects.get(pk=account_pk)
-        character = Character.objects.filter(account__pk=account_pk).order_by("-created_at").first()
+        character = Character.objects.filter(account__pk=account_pk).order_by("created_at").first()
         skillTrees = SkillTree.objects.filter(character__id=character.pk).order_by('level')
         aggregate = skillTrees.aggregate(Max('level'), Min('level'))
         print(aggregate)
@@ -165,7 +165,7 @@ def account_get_characters(request):
     accountName = request.GET.get('accountName', '')
     account = Account.objects.get(name=accountName)
     array = []
-    for idx, character in enumerate(account.characters.all().order_by("-created_at")):
+    for idx, character in enumerate(account.characters.all().order_by("created_at")):
         char = {}
         char['ascendancyClass'] = character.ascendancyClass
         char['class'] = character.classs
