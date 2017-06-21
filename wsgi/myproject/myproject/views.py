@@ -137,5 +137,12 @@ def account_get_characters(request):
     account = Account.objects.get(name=accountName)
     array = []
     for character in account.characters.all():
-        array.append(character)
+        char = {}
+        char['ascendancyClass'] = character.ascendancyClass
+        char['class'] = character.classs
+        char['classId'] = character.classId
+        char['league'] = character.league
+        char['level'] = character.level
+        char['name'] = character.name
+        array.append(char)
     return JsonResponse(json.dumps(array))
