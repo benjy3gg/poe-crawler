@@ -5072,7 +5072,7 @@ define("PoE/API/Account", ["jquery", "PoE/Backbone/Collection/Character/Characte
     }
 }),
 define("text!PoE/Inventory/InventoryManagerMenuCharacter.hbt", [], function() {
-    return '{{#with character}}\n<span data-class="{{class}}" data-ascendancyClass="{{ascendancyClass}}" data-classId="{{classId}}" data-league="{{league}}" data-level="{{level}}" data-name="{{name}}"><div class="icon {{class}}"></div>\n<div class="infoLine1">{{#if expired}}<div class="expired-character-flag">*</div>{{/if}}<span class="characterName">{{name}}</span></div>\n<div class="infoLine2">{{translate "Level"}} {{level}} {{translate class}}</div>\n<div class="infoLine3">{{league}} {{translate "League"}}</div>\n{{/with}}\n'
+    return '{{#with character}}\n<span data-class="{{class}}" data-ascendancyClass="{{ascendancyClass}}" data-classId="{{classId}}" data-league="{{league}}" data-level="{{level}}" data-levels="{{levels}}" data-name="{{name}}"><div class="icon {{class}}"></div>\n<div class="infoLine1">{{#if expired}}<div class="expired-character-flag">*</div>{{/if}}<span class="characterName">{{name}}</span></div>\n<div class="infoLine2">{{translate "Level"}} {{level}} {{translate class}}</div>\n<div class="infoLine3">{{league}} {{translate "League"}}</div>\n{{/with}}\n'
 }),
 define("PoE/Inventory/InventoryManagerMenuCharacter", ["jquery", "Backbone", "PoE/Handlebars/TemplateCollection", "PoE/Backbone/EventBus", "text!PoE/Inventory/InventoryManagerMenuCharacter.hbt"], function(e, t, n, r) {
     return t.View.extend({

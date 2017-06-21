@@ -23,9 +23,9 @@
         <div class="content">
             <div class="backdrop"></div>
             <div class="wrapper">
-              <select>
+              <select id="levelDropdown">
                 {% for key, value in skilltrees.items %}
-                      <option class="skilltree-link" data-level="{{key}}"> {{ key }}: {{ value }} </option>
+                      <option class="levelDropdownOption" data-level="{{key}}"> {{ key }}: {{ value }} </option>
                 {% endfor %}
             </select>
 
