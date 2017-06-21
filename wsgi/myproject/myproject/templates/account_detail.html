@@ -1,0 +1,157 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" class="en_US" lang="en-US" xml:lang="en-US">
+<head>
+<title></title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<meta name="theme-color" content="#ffffff" >
+<link href="http://web.poecdn.com/image/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" >
+<link href="http://web.poecdn.com/image/favicon/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" >
+<link href="http://web.poecdn.com/image/favicon/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16" >
+<link href="http://web.poecdn.com/image/favicon/manifest.json" rel="manifest" >
+<link href="http://web.poecdn.com/image/favicon/safari-pinned-tab.svg" rel="mask-icon" >
+<link href="http://web.poecdn.com/image/favicon/favicon.ico" rel="shortcut icon" >
+<link href="http://web.poecdn.com/css/http/screen.css?v=c4d0f14c1fb9a3def39b239674bc7e8d" media="screen" rel="stylesheet" type="text/css" >
+<body class="en_US noJS ">
+            <div class="container">
+        <div class="header en">
+            <div class="controls">
+                <div id="statusBar">
+                  <div class="statusBarCenter"></div><div class="statusBarRight"></div></div>                                         <a id="mainLogoLink" href="/">
+                    <span>Path of Exile</span>
+                </a>
+
+                            </div>
+        </div>
+        <div class="content">
+            <div class="backdrop"></div>
+            <div class="wrapper">
+              <select id="levelDropdown">
+                {% for key, value in skilltrees.items %}
+                      <option class="levelLink" data-level="{{key}}"> {{ key }}: {{ value }} </option>
+                {% endfor %}
+            </select>
+
+
+
+
+
+
+<div class="layoutBox1 layoutBoxFull defaultTheme">
+
+    <div class="layoutBoxContent"><div class="profile ">
+    <div class="profile-container fullwidth">
+        <div class="container-top"></div>
+        <div class="container-bottom"></div>
+        <div class="container-inner">
+            <div class="container-content">
+                                <h2>{{character.account.name}}</h2>
+
+        <div id="profile-inventory-controls" class="inventoryManager">
+        </div>                            </div>
+        </div>
+    </div>
+    </div>
+
+</div>
+
+</div>
+                                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+        <div id="poe-popup-container"></div>
+    <div id="fb-root"></div>
+        <script type="text/javascript" src="http://web.poecdn.com/js/lib/require-2.3.2.js?v=fb734febccaaa258d2fe03b3dca5e0a6"></script>
+<script type="text/javascript">
+    //<!--
+                document.body.className = document.body.className.replace( /(?:^|\s)noJS(?!\S)/ , '');
+            window.momentLocale = 'en_US';
+            window.momentTimezone = 'Europe/Berlin';
+            window.PoELocale = 'en_US';
+
+            BASEURL = '';
+
+            require.config({
+                baseUrl: "/static/js",
+                paths : {"main":"main","plugins":"plugins","skilltree":"skilltree"},
+                shim: {"main":{"deps":["config","plugins"]},"plugins":{"deps":["config"]}}
+            });
+            require(["main"]);    //-->
+</script>
+<!--
+<script type="text/javascript">
+(function(e,f){var b={},g=function(a){b[a]&&(f.clearInterval(b[a]),b[a]=null)};e.fn.waitUntilExists=function(a,h,j){var c=this.selector,d=e(c),k=d.not(function(){return e(this).data("waitUntilExists.found")});"remove"===a?g(c):(k.each(a).data("waitUntilExists.found",!0),h&&d.length?g(c):j||(b[c]=f.setInterval(function(){d.waitUntilExists(a,h,!0)},500)));return d}})(jQuery,window);
+</script>
+<script type="text/javascript">
+  jQuery("#sidebar-dock").waitUntilExists(function() { $(this).click()});
+</script>-->
+<script type="text/javascript">
+    //<!--
+    require(["main"], function() {
+    require(["PoE/Backbone/Model/Character/Character", "PoE/Inventory/InventoryManager"], function(C, I) {
+        var c = new C({"name":"{{character.name}}","league":"{{character.league}}","classId":"{{character.classId}}","ascendancyClass":"{{character.ascendancyClass}}","class":"{{character.classs}}","level":"{{min_level}}" });
+        var options = {"el":"#profile-inventory-controls","accountName":"{{account.name}}","equippedOnly":true};
+        options.activeCharacter = c;
+        var i = new I(options);
+        i.render();
+    });
+});    //-->
+</script>
+<script type="text/javascript">
+
+require(["main"], function() {
+  $( document ).ready(function() {
+    $('#levelDropdown').change(function(e) {
+      level = $( this ).find( "option:checked" ).data("level");
+      classs = $( this ).find( "option:checked" ).data("class");
+      ascendancyclass = $( this ).find( "option:checked" ).data("ascendancyclass");
+      classid = $( this ).find( "option:checked" ).data("classid");
+      league = $( this ).find( "option:checked" ).data("league");
+      name = $( this ).find( "option:checked" ).data("name");
+      accountName = "{{account.name}}";
+
+      require(["main"], function() {
+        require(["PoE/Backbone/Model/Character/Character", "PoE/Inventory/InventoryManager"], function(C, I) {
+            var c = new C({"name":name,"league":league,"classId":classid,"ascendancyClass":ascendancyclass,"class":classs,"level":level });
+            var options = {"el":"#profile-inventory-controls","accountName":accountName,"equippedOnly":true};
+            options.activeCharacter = c;
+            var i = new I(options);
+            i.render();
+        });
+      })
+    })
+
+    $('.levelLink').click(function(e) {
+      level = $( this ).find( "option:checked" ).data("level");
+      classs = $( this ).find( "option:checked" ).data("class");
+      ascendancyclass = $( this ).find( "option:checked" ).data("ascendancyclass");
+      classid = $( this ).find( "option:checked" ).data("classid");
+      league = $( this ).find( "option:checked" ).data("league");
+      name = $( this ).find( "option:checked" ).data("name");
+      accountName = "{{account.name}}";
+
+      require(["main"], function() {
+        require(["PoE/Backbone/Model/Character/Character", "PoE/Inventory/InventoryManager"], function(C, I) {
+            var c = new C({"name":characterName,"league":league,"classId":classid,"ascendancyClass":ascendancyclass,"class":classs,"level":level });
+            var options = {"el":"#profile-inventory-controls","accountName":accountName,"equippedOnly":true};
+            options.activeCharacter = c;
+            var i = new I(options);
+            i.render();
+        });
+      })
+    });
+  });
+})
+</script>
+
+<script type="text/javascript">
+    //<!--
+    require(["main"], function() {
+        require(["default/showcase-pins"]);
+    });
+    //-->
+</script>
+<!--[if lt IE 7]><script type="text/javascript" src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script><![endif]-->
+<script type="text/javascript">
+    //<!--
+    window.onerror = function(e, url, l) {};    //-->
+</script>    </body>
+</html>

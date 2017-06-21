@@ -43,6 +43,35 @@ class AccountListView(ListView):
         objects = Account.objects.order_by("name").all()
         return objects
 
+class AccountDetailView(DetailView):
+
+    model = Account
+    template_name = "account_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CharacterDetailView, self).get_context_data()
+        account_pk = context["account"].id
+        context["account"] = Account.objects.get(pk=account_pk)
+        character = Character.objects.get(account__pk=account_pk).first()
+        skillTrees = SkillTree.objects.filter(character__id=character.pk).order_by('level')
+        aggregate = skillTrees.aggregate(Max('level'), Min('level'))
+        print(aggregate)
+        context["min_level"] = aggregate["level__min"]
+        context["max_level"] = aggregate["level__max"]
+        skillTrees_ = {}
+        lastLevel = -1
+        for skillTree in skillTrees:
+            if skillTree.level == lastLevel:
+                skillTrees_[skillTree.level] = skillTree
+            else:
+                skillTrees_[skillTree.level] = skillTree
+            lastLevel = skillTree.level
+        context["skilltrees"] = skillTrees_
+        context["skilltree"] = skillTrees_[context["min_level"]]
+        context["character"] = character
+
+        return context
+
 
 class CharacterListView(ListView):
 
