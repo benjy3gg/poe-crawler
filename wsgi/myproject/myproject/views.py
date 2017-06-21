@@ -136,6 +136,6 @@ def account_get_characters(request):
     accountName = request.GET.get('accountName', '')
     account = Account.objects.get(name=accountName)
     array = []
-    for character in account.characters:
+    for character in account.characters.all():
         array.append(character)
     return JsonResponse(json.dumps(array))
