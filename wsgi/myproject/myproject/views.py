@@ -50,10 +50,8 @@ class AccountDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountDetailView, self).get_context_data()
-        name = kwargs["name"]
-        #account_pk = context["account"].id
-        #context["account"] = Account.objects.get(pk=account_pk)
-        context["account"] = Account.objects.get(name=name)
+        account_pk = context["account"].id
+        context["account"] = Account.objects.get(pk=account_pk)
         character = Character.objects.filter(account__pk=account_pk).order_by("created_at").first()
         skillTrees = SkillTree.objects.filter(character__id=character.pk).order_by('level')
         aggregate = skillTrees.aggregate(Max('level'), Min('level'))
@@ -97,8 +95,8 @@ class CharacterDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CharacterDetailView, self).get_context_data()
-        character_name = context["character"].name
-        skillTrees = SkillTree.objects.filter(character__name=character_name).order_by('level')
+        character_pk = context["character"].id
+        skillTrees = SkillTree.objects.filter(character__id=character_pk).order_by('level')
         aggregate = skillTrees.aggregate(Max('level'), Min('level'))
         print(aggregate)
         context["min_level"] = aggregate["level__min"]
