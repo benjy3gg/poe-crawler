@@ -5054,11 +5054,13 @@ define("PoE/API/Account", ["jquery", "PoE/Backbone/Collection/Character/Characte
     return {
         getCharacters: function(n) {
             var r = e.Deferred()
-              , i = {};
+              , i = {
+                account: window.accountName
+              };
             return n.accountName && (i.accountName = n.accountName),
             e.ajax({
                 url: "/character-window/get-characters",
-                type: "POST",
+                type: "GET",
                 dataType: "json",
                 data: i,
                 success: function(e) {

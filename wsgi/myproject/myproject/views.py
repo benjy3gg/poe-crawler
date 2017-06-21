@@ -131,3 +131,11 @@ def character_get_items(request):
     level = request.GET.get('level', 0)
     skilltree = SkillTree.objects.filter(account__name=account, character__name=character, level=int(level)).order_by("-created_at").first()
     return JsonResponse(json.loads(skilltree.itemsJSON))
+
+def account_get_characters(request):
+    account = request.GET.get('account', '')
+    characters = Account.objects.filter(account__name=account).characters
+    array = []
+    for character in characters:
+        array.append(character)
+    return JsonResponse(json.dumps(array))
