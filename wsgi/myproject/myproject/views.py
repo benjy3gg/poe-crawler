@@ -48,6 +48,7 @@ class AccountDetailView(DetailView):
     model = Account
     template_name = "account_detail.html"
     slug_url_kwarg = "name"
+    slug_field = "name"
 
     def get_context_data(self, **kwargs):
         account_name = kwargs["name"]
