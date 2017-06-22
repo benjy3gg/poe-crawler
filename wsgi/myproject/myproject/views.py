@@ -47,11 +47,11 @@ class AccountDetailView(DetailView):
 
     model = Account
     template_name = "account_detail.html"
-    pk_url_kwarg = "name"
+    slug_url_kwarg = "name"
 
     def get_context_data(self, **kwargs):
-        context = super(AccountDetailView, self).get_context_data()
         account_name = kwargs["name"]
+        context = super(AccountDetailView, self).get_context_data()
         #account_pk = context["account"].id
         context["account"] = Account.objects.get(name=account_name)
         character = Character.objects.filter(account__name=account_name).order_by("created_at").first()
