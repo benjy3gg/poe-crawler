@@ -51,11 +51,11 @@ class AccountDetailView(DetailView):
     slug_field = "name"
 
     def get_context_data(self, **kwargs):
-        account_name = kwargs["name"]
+        account = kwargs["object"]
         context = super(AccountDetailView, self).get_context_data()
         #account_pk = context["account"].id
-        context["account"] = Account.objects.get(name=account_name)
-        character = Character.objects.filter(account__name=account_name).order_by("created_at").first()
+        context["account"] = account
+        character = Character.objects.filter(account__name=account.name).order_by("created_at").first()
         skillTrees = SkillTree.objects.filter(character__id=character.pk).order_by('level')
         aggregate = skillTrees.aggregate(Max('level'), Min('level'))
         print(aggregate)
